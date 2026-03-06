@@ -1,0 +1,738 @@
+---
+title: "AI Web Dev"
+---
+
+## Overview
+
+The website pages that you have seen actually have **3 different aspects**:
+
+- **Skeleton (HTML):** Imagine blocks when you are writing on Notion
+- **Skin (CSS):** Styling
+- **Brain (JavaScript):** Logics
+
+---
+
+# HTML
+
+**Hyper Text Markup Language (HTML)** is a file to define your website blocks and metadata.  
+This is a **required and main file** that has to exist in order to create a website.
+
+---
+
+## How to Start
+
+Create a file called: `index.html`. Then press: `! + Tab` inside your code editor.
+
+Recommended editors:
+
+- Visual Studio Code
+- Cursor
+- AntiGravity
+
+This generates the base HTML template.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+```
+
+---
+
+## Tags
+
+Notice the pattern:
+
+```
+<...> ... </...>
+```
+
+This is called a **tag**.
+
+Some tags are **paired**, while others are **void** (self-closing).
+
+Examples:
+
+```
+<tag></tag>
+```
+
+or
+
+```
+<tag />
+```
+
+---
+
+## Head vs Body
+
+### Head Tag
+
+Inside `<head>` you usually place **metadata** such as:
+
+- Title
+- Description
+- OpenGraph tags
+- SEO information
+
+These help when sharing your website or appearing in search engines.
+
+---
+
+### Body Tag
+
+Inside `<body>` is where the **content of your website** goes.
+
+Examples:
+
+```html
+<h1>Hello World</h1>
+<p>This is a paragraph <span>!</span></p>
+<button>Click me</button>
+```
+
+Documentation reference:
+
+https://www.w3schools.com/tags/tag_comment.asp
+
+---
+
+## Attributes
+
+Tags can contain **attributes**.
+
+Example:
+
+```html
+<img src="./image.png" alt="Image" />
+<a href="https://www.google.com">Google</a>
+```
+
+Attributes:
+
+- `src`
+- `href`
+- `alt`
+
+Each element may have **different supported attributes**.
+
+---
+
+# CSS
+
+**Cascading Style Sheets (CSS)** is used to style your HTML elements. CSS **cannot run alone**. It must be connected to an HTML file.
+
+---
+
+## Linking CSS
+
+Add this inside your `<head>`:
+
+```html
+<title>Document</title>
+<link rel="stylesheet" href="./style.css" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+  rel="stylesheet"
+/>
+```
+
+You also need to create: `style.css`
+
+---
+
+## Custom Fonts
+
+You can get fonts from: https://fonts.google.com. Search a font and copy the **link tag** into the `<head>`.
+
+---
+
+## Base Styling Template
+
+Common CSS reset:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+```
+
+Explanation:
+
+- Reset browser default spacing
+- Prevent elements exceeding dimensions
+
+---
+
+# CSS Selectors
+
+Selectors target HTML elements.
+
+Types:
+
+- Tag selector
+- Class selector
+- ID selector
+
+Example HTML:
+
+```html
+<h1 class="title" id="title">Hello World</h1>
+```
+
+Example CSS:
+
+```css
+h1 {
+  color: red;
+  font-size: 24px;
+}
+
+.title,
+#title,
+h1.title {
+  color: blue;
+}
+
+body p {
+  font-weight: bold;
+}
+```
+
+Notes:
+
+- `.` → class selector
+- `#` → id selector
+
+---
+
+# Magic Element: Div
+
+`div` is a container element used to group elements.
+
+Example:
+
+```html
+<div>
+  <h1>Title</h1>
+  <p>Description</p>
+</div>
+```
+
+Commonly used as:
+
+- wrapper
+- container
+- layout block
+
+---
+
+# Layout Styling Template
+
+### Flexbox
+
+Used for **horizontal or vertical layouts**
+
+```css
+display: flex;
+gap: 16px;
+flex-direction: row;
+```
+
+Options:
+
+- row
+- column
+
+---
+
+### Grid
+
+Used for **card-based layouts**.
+
+Example:
+
+```css
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+```
+
+Example use case:
+
+- Google Classroom style cards
+
+---
+
+# JavaScript
+
+HTML and CSS **are not programming languages**. They do not contain logic. JavaScript adds **logic and interactivity**.
+
+---
+
+## Linking JavaScript
+
+Create: `script.js`. Add before closing `body`:
+
+```html
+<script src="./script.js"></script>
+```
+
+---
+
+# DOM Manipulation
+
+JavaScript can select HTML elements and manipulate them.
+
+Example:
+
+```javascript
+const title = document.querySelector(".title");
+
+title.addEventListener("click", () => {
+  title.style.color = "purple";
+});
+```
+
+Explanation:
+
+- Select element
+- Add click event
+- Change style dynamically
+
+---
+
+# React
+
+React is one of the **most used JavaScript frameworks today**.
+
+It helps create:
+
+- Complex applications
+- Multiple pages
+- Reusable UI components
+- Dynamic rendering
+
+Popular frameworks using React: Next.js
+
+Documentation: https://react.dev
+
+---
+
+# Getting Started
+
+After creating a React project:
+
+Install dependencies:
+
+```
+npm i
+```
+
+Files structure:
+
+```
+src/
+  App.jsx
+  main.jsx
+```
+
+Run project:
+
+```
+npm run dev
+```
+
+---
+
+# Components
+
+Components make UI reusable.
+
+Example:
+
+```jsx
+function MyButton({ title }) {
+  return <button>I'm a {title} button</button>;
+}
+
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Welcome to my app</h1>
+      <MyButton title="login" />
+    </div>
+  );
+}
+```
+
+---
+
+# React Hooks
+
+Hooks are built-in React functions.
+
+Docs: https://react.dev/reference/react/hooks
+
+---
+
+## useEffect
+
+Runs side effects based on dependencies.
+
+Example:
+
+```jsx
+useEffect(() => {
+  const connection = createConnection(serverUrl, roomId);
+  connection.connect();
+
+  return () => {
+    connection.disconnect();
+  };
+}, [serverUrl, roomId]);
+```
+
+If dependencies change, the effect reruns.
+
+---
+
+## useState
+
+Used to manage component state.
+
+Example:
+
+```jsx
+const [age, setAge] = useState(28);
+```
+
+Update state:
+
+```jsx
+setAge(30);
+
+setAge((prev) => prev + 1);
+```
+
+`prev` represents the current value.
+
+---
+
+# TailwindCSS
+
+TailwindCSS allows styling **without writing CSS files**.
+
+Docs: https://tailwindcss.com
+
+Install **TailwindCSS IntelliSense** extension for autocomplete.
+
+---
+
+## Basic Syntax
+
+### Colors
+
+```
+bg-red-200
+text-blue-900
+```
+
+Higher number → stronger color.
+
+---
+
+### Size
+
+```
+text-lg
+shadow-xl
+rounded-sm
+```
+
+---
+
+### Spacing
+
+```
+p-6
+m-24
+py-20
+mx-2
+pl-3
+```
+
+---
+
+### Layout
+
+```
+flex
+grid
+gap-4
+grid-cols-3
+flex-col
+mx-auto
+```
+
+---
+
+# shadcn/ui
+
+A component library that allows installing only the components you need.
+
+Docs: https://ui.shadcn.com
+
+AI builders usually use **shadcn components** instead of building UI from scratch.
+
+---
+
+# Next.js
+
+Next.js is a **fullstack framework** built on React.
+
+Docs: https://nextjs.org
+
+Unlike React, Next.js includes:
+
+- Backend
+- Frontend
+- Routing
+- API
+
+Used by tools like:
+
+- Lovable
+- Orchids
+
+---
+
+# Rendering Methods
+
+## Server Side Rendering (SSR)
+
+Rendered on the server before reaching the browser.
+
+Use cases:
+
+- Metadata
+- Protected pages
+- Authentication validation
+
+Too much SSR can slow apps.
+
+---
+
+## Client Side Rendering (CSR)
+
+Rendered in the browser.
+
+Example:
+
+- Skeleton loading
+- Fetching data after page load
+
+---
+
+# Middleware
+
+You can protect routes using middleware.
+
+Example file:
+
+```
+src/proxy.js
+```
+
+Used for:
+
+- Authentication
+- Session validation
+- Access control
+
+---
+
+# Routing
+
+### React
+
+Requires:
+
+https://reactrouter.com/
+
+---
+
+### Next.js
+
+Uses **file-based routing**.
+
+Example:
+
+Create page:
+
+```
+src/user/page.tsx
+```
+
+URL:
+
+```
+/user
+```
+
+---
+
+## Dynamic Routes
+
+Folder:
+
+```
+src/user/[id]
+```
+
+Example route:
+
+```
+/user/123
+```
+
+Access parameter:
+
+```jsx
+useParams();
+```
+
+---
+
+# API Routes
+
+Create API folder:
+
+```
+src/api
+```
+
+Standard naming:
+
+```
+route.ts
+```
+
+For UI pages:
+
+```
+page.tsx
+```
+
+---
+
+# Infrastructure
+
+## Vercel
+
+https://vercel.com
+
+Next.js is built by Vercel.
+
+Features:
+
+- GitHub integration
+- Automatic deployments
+- CI/CD
+
+---
+
+## Supabase
+
+All-in-one backend platform.
+
+https://supabase.com
+
+Includes:
+
+- Database
+- Authentication
+- File storage
+
+---
+
+## OpenRouter
+
+AI API platform with free credits.
+
+https://openrouter.ai
+
+Allows integration with multiple AI models.
+
+---
+
+# Libraries
+
+## Prisma
+
+https://www.prisma.io
+
+ORM used for database communication.
+
+Benefits:
+
+- Safer queries
+- Prevent SQL injection
+- Easy database manipulation
+
+---
+
+## Better Auth
+
+https://www.better-auth.com
+
+Authentication library supporting:
+
+- Email/password
+- Google login
+- OAuth
+
+---
+
+## tRPC
+
+https://trpc.io
+
+Allows easy creation of API endpoints and server logic.
+
+---
+
+# Bonus
+
+Starter kit with:
+
+- Prisma
+- Better Auth
+- tRPC
+
+Repository:
+
+https://github.com/fydemy/next-starter
+
+---
+
+# Community
+
+Questions and contributions:
+
+https://fydemy.com
+
+Join the **Fydemy Discord** to participate in discussions.

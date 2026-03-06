@@ -1,0 +1,61 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "palm",
+  "name": "Fydemy",
+  "colors": {
+    "primary": "#0A0A0A",
+    "light": "#FFFFFF",
+    "dark": "#6132FD"
+  },
+  "favicon": "./assets/logo/fav.svg",
+  "fonts": {
+    "family": "Jetbrains Mono"
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Learning Path",
+        "pages": ["ai-web-dev"]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Community",
+          "href": "https://discord.gg/7FBpTEXqVj",
+          "icon": "users"
+        },
+        {
+          "anchor": "Feedback",
+          "href": "https://wa.me/6587470061",
+          "icon": "book"
+        },
+        {
+          "anchor": "Github",
+          "href": "https://github.com/fydemy",
+          "icon": "github"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/assets/logo/logo.svg",
+    "dark": "/assets/logo/logo_dark.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Home",
+      "href": "https://fydemy.com"
+    }
+  },
+  "contextual": {
+    "options": ["copy", "chatgpt", "claude", "perplexity", "cursor", "vscode"]
+  },
+  "footer": {
+    "socials": {
+      "instagram": "https://instagram.com/fydemycom",
+      "website": "https://fydemy.com"
+    }
+  }
+}
