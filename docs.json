@@ -9,19 +9,29 @@
   },
   "favicon": "./assets/logo/fav.svg",
   "fonts": {
-    "family": "Jetbrains Mono"
+    "family": "Iosevka Charon Mono"
   },
   "navigation": {
     "tabs": [
       {
         "tab": "Learning Path",
-        "pages": ["ai-web-dev"]
+        "groups": [
+          {
+            "group": "Certified Web Dev",
+            "pages": [
+              "web/frontend",
+              "web/backend",
+              "web/react",
+              "web/conclusion"
+            ]
+          }
+        ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Community",
+          "anchor": "Ask Community",
           "href": "https://discord.gg/7FBpTEXqVj",
           "icon": "users"
         },
