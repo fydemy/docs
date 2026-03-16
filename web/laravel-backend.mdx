@@ -248,7 +248,7 @@ Buka file migration (namanya ada timestamp, seperti `2024_01_01_000000_create_bo
 public function up(): void
 {
     Schema::create('books', function (Blueprint $table) {
-        $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
+        $table->uuid('id');
         $table->string('nama')->unique();
         $table->string('peminjam');
         $table->timestamps();
@@ -266,9 +266,9 @@ Terapkan migration ke database:
 php artisan migrate
 ```
 
-Buka phpMyAdmin — tabel `books` sudah muncul!
+Buka terminal — tabel `books` sudah muncul!
 
-![Prisma migrate](../assets/backend/8.png)
+![Laravel migrate](../assets/backend/8.png)
 
 ### Setup Model
 
