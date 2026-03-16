@@ -1,5 +1,5 @@
 ---
-title: "The Kitchen"
+title: 'The Kitchen'
 ---
 
 After learning basic frontend with HTML, CSS, and JavaScript, have you ever wondered how sites like Tokopedia, Instagram, TikTok, and others work? It’s a lot, right? Can we do it with just frontend? We could, but it would stay static—we wouldn’t see updated stories, other people’s posts, and so on.
@@ -12,21 +12,21 @@ That’s the idea. To get a better feel for it, let’s jump into practice.
 
 ## Backend
 
-This is where the programming logic lives. We’ll use **JavaScript** here. The backend covers the database, API routing, business logic, and more.
+This is where the programming logic lives. We’ll use **PHP** here. The backend covers the database, API routing, business logic, and more.
 
 ### Database
 
 Where do you think sites like Instagram store user data and posts? In Excel, Word, Notepad? You could, but that wouldn’t scale. Instead we use **databases**—like tables—and they come in **relational** and **non-relational** types.
 
 - **Relational** — You define column names and data types (the structure). Examples: MySQL, PostgreSQL, etc.
-- **Non-relational** — No fixed schema; you insert data without defining structure upfront, often in an object/document form. Examples include MongoDB.
+- **Non-relational** — No fixed schema; you insert data without defining structure upfront, often in an object/document form. Examples include MySQL.
 
 ### Setting up the database
 
-- Download [XAMPP](https://www.apachefriends.org/). Run the installer and accept the default settings.
-- After installation, open the app and click **Start** for **Apache** and **MySQL**.
+- Download [Laragon](https://laragon.org/docs/install). Run the installer and accept the default settings.
+- After installation, open the app and click **Start All**.
 
-![XAMPP Apache and MySQL](../assets/backend/3.png)
+![Laragon](../assets/backend/3.png)
 
 - Open `localhost/phpmyadmin` in your browser. Create a new database by clicking **New** in the sidebar, entering a name, then clicking **Create**.
 
@@ -126,8 +126,8 @@ module.exports = age;
 **[Import]** — After installing express (or any package) or when you have a file that exports with `module.exports`, you can import like this:
 
 ```javascript
-const express = require("express");
-const age = require("namafile");
+const express = require('express');
+const age = require('namafile');
 ```
 
 ### Running the program
@@ -187,7 +187,7 @@ DB_PASSWORD=admin_123
 **index.js**
 
 ```javascript
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
 
 console.log(process.env.DB_PASSWORD);
@@ -233,14 +233,14 @@ APP_PORT=3000
 **index.js**
 
 ```javascript
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
 
 app.listen(process.env.APP_PORT, () => {
-  console.log("Server is running...");
+  console.log('Server is running...');
 });
 ```
 
@@ -261,8 +261,8 @@ Then open your browser and go to `localhost:3000`. Nothing shows yet because we 
 Add a route:
 
 ```javascript
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 ```
 
@@ -363,10 +363,10 @@ Use a lightweight VS Code extension like **Thunder Client** to test your API.
 We'll keep everything in `index.js`.
 
 ```javascript
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('@prisma/client');
 const db = new PrismaClient();
 
-app.get("/books", async (req, res) => {
+app.get('/books', async (req, res) => {
   const data = await db.books.findMany();
   res.json(data);
 });
@@ -375,7 +375,7 @@ app.get("/books", async (req, res) => {
 For the latest Prisma version, you may need to import from the generated client:
 
 ```javascript
-const { PrismaClient } = require("./generated/prisma");
+const { PrismaClient } = require('./generated/prisma');
 ```
 
 After running `npx prisma generate`, you get autocomplete when using `@prisma/client`, matching the schema you defined.
@@ -399,12 +399,12 @@ app.use(express.json());
 Then:
 
 ```javascript
-app.post("/books", async (req, res) => {
+app.post('/books', async (req, res) => {
   const { nama, peminjam } = req.body;
   await db.books.create({
     data: { nama, peminjam },
   });
-  res.json({ message: "Book added successfully!" });
+  res.json({ message: 'Book added successfully!' });
 });
 ```
 
@@ -427,14 +427,14 @@ const { id } = req.params;
 In the database query we use **where** so only the book with that `id` is updated:
 
 ```javascript
-app.put("/books/:id", async (req, res) => {
+app.put('/books/:id', async (req, res) => {
   const { id } = req.params;
   const { nama, peminjam } = req.body;
   await db.books.update({
     where: { id },
     data: { nama, peminjam },
   });
-  res.json({ message: "Book updated successfully" });
+  res.json({ message: 'Book updated successfully' });
 });
 ```
 
@@ -472,13 +472,13 @@ Welcome to the final project! Your task is to refine the library API we built by
 - **#4** Wrap each route in a **try/catch** block for error handling:
 
 ```javascript
-app.post("/books", async (req, res) => {
+app.post('/books', async (req, res) => {
   const { nama, peminjam } = req.body;
   try {
     await db.books.create({
       data: { nama, peminjam },
     });
-    res.json({ message: "Book added successfully!" });
+    res.json({ message: 'Book added successfully!' });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: err.message });
@@ -486,13 +486,6 @@ app.post("/books", async (req, res) => {
 });
 ```
 
-<Card
-  title="Submit"
-  icon="upload"
-  href="https://app.fysite.id/submit?course_id=1&subcourse_id=2"
-  arrow="true"
-  cta="Submit here"
->
-  Add your Github link or project in Google Drive then the community will review
-  and help you together. Please stay tuned on Discord to see the latest updates!
+<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=2" arrow="true" cta="Submit here">
+  Add your Github link or project in Google Drive then the community will review and help you together. Please stay tuned on Discord to see the latest updates!
 </Card>
