@@ -26,11 +26,11 @@ Menurutmu, di mana situs seperti Instagram menyimpan data pengguna dan postingan
 - Download [Laragon](https://laragon.org/docs/install). Jalankan installer dan terima pengaturan default.
 - Setelah instalasi, buka aplikasinya dan klik **Start All**.
 
-![Laragon](../assets/backend/3.png)
+![Laragon](../assets/backend/2.png)
 
 - Buka `localhost/phpmyadmin` di browser. Buat database baru dengan klik **New** di sidebar, masukkan nama, lalu klik **Create**.
 
-![phpMyAdmin new database](../assets/backend/4.png)
+![phpMyAdmin new database](../assets/backend/3.png)
 
 ### API routing
 
@@ -40,7 +40,7 @@ Aplikasi yang kompleks biasanya punya banyak fitur — seperti Instagram: upload
 
 APIs often expose **CRUD** (Create, Read, Update, Delete) via different routes. For example:
 
-![CRUD routes](../assets/backend/6.png)
+![CRUD routes](../assets/backend/4.png)
 
 - **GET** `/posts` — daftar/lihat postingan
 - **PUT** `/posts/{postId}` — update postingan berdasarkan ID
@@ -274,7 +274,7 @@ php artisan migrate
 
 Buka terminal — tabel `books` sudah muncul!
 
-![Laravel migrate](../assets/backend/8.png)
+![Laravel migrate](../assets/backend/6.png)
 
 ### Setup Model
 
@@ -352,7 +352,7 @@ php artisan route:list
 
 Gunakan ekstensi VS Code ringan seperti **Thunder Client** untuk testing API-mu.
 
-![Thunder Client](../assets/backend/7.png)
+![Thunder Client](../assets/backend/5.png)
 
 ### GET `/api/books`
 
@@ -372,7 +372,7 @@ public function index()
 
 Buka **Thunder Client**, kirim GET request ke `http://localhost:8000/api/books`, dan klik **Send**. Responsnya `[]` karena belum ada buku yang ditambahkan.
 
-![GET books empty](../assets/backend/10.png)
+![GET books empty](../assets/backend/7.png)
 
 ### POST `/api/books`
 
@@ -403,11 +403,11 @@ Laravel **otomatis** mem-parse JSON request body. `$request->validate()` juga la
 
 Di Thunder Client, ganti method ke **POST**, tambahkan JSON body seperti `{"nama": "Laskar Pelangi", "peminjam": "Budi"}`, dan klik **Send**. Kamu akan melihat pesan sukses.
 
-![POST books](../assets/backend/11.png)
+![POST books](../assets/backend/8.png)
 
 Kirim **GET** ke `/api/books` lagi — kamu akan melihat buku yang baru ditambahkan, lengkap dengan `id` UUID yang digenerate.
 
-![GET books with data](../assets/backend/12.png)
+![GET books with data](../assets/backend/9.png)
 
 ### PUT `/api/books/{id}`
 
