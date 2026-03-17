@@ -1,5 +1,5 @@
 ---
-title: "Hello World!"
+title: 'Hello World!'
 ---
 
 Learning frontend is fun and forms the foundation for what we'll learn next, because we work with the UI and design instead of the terminal. Here the material is summarized and straight to the point!
@@ -19,11 +19,11 @@ In Visual Studio Code, click the **File** menu in the top-left corner, then choo
 
 ### Create a new file
 
-Click the add-file icon in the sidebar, then type `index.html`. Press Enter to create it. Note that websites generally have this file structure:
+Click the add-file icon in the sidebar, then type `index.php`. Press Enter to create it. Note that websites generally have this file structure:
 
 - **HTML (Hypertext Markup Language)** `*.html` — the skeleton for elements like headings, text, images, links, buttons, and so on
 - **CSS (Cascading Style Sheets)** `*.css` — styling for HTML elements (font-size, color, font, margin, padding, etc.)
-- **JavaScript** `*.js` — logic to make the site more interactive, dynamic, and to add functionality
+- **PHP** `*.php` — server-side logic to generate dynamic content, handle forms, and connect to databases
 
 ![New file](../assets/frontend/2.png)
 
@@ -103,13 +103,13 @@ Easiest, but not recommended—it clutters your HTML when styles get complex and
 
 **2. External CSS (recommended)**
 
-Create a **new CSS file** the same way you created the HTML file—for example name it `style.css`. Then link it from your HTML; make sure the `href` matches your file name.
+Create a **new CSS file** the same way you created the PHP file—for example name it `style.css`. Then link it from your HTML; make sure the `href` matches your file name.
 
 **Important:** Next, define a class name (e.g. `header`) in your CSS and use that name in the `class` attribute on the elements you want to style.
 
-**index.html**
+**index.php**
 
-```html
+```php
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -124,7 +124,7 @@ Create a **new CSS file** the same way you created the HTML file—for example n
 </html>
 ```
 
-In your CSS file, use the class name you defined, preceded by a dot (meaning “class”), then add properties like `text-align` and more inside curly braces. See the [list of CSS properties](https://www.w3schools.com/cssref/index.php).
+In your CSS file, use the class name you defined, preceded by a dot (meaning "class"), then add properties like `text-align` and more inside curly braces. See the [list of CSS properties](https://www.w3schools.com/cssref/index.php).
 
 **style.css**
 
@@ -138,7 +138,7 @@ In your CSS file, use the class name you defined, preceded by a dot (meaning “
 
 Similar to external CSS but not recommended—keeping CSS in a separate file is usually clearer. Add a `<style>` tag after the `<title>` and write your CSS inside it.
 
-```html
+```php
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -160,133 +160,136 @@ Similar to external CSS but not recommended—keeping CSS in a separate file is 
 
 Ever thought about how human logic can be expressed in code? It's possible, though limited—not like AI. Let's get familiar with…
 
-## JavaScript
+## PHP
 
-Did you know that by learning this one language you can become a fullstack web, mobile, desktop developer and more? No wonder it's one of the most popular languages. Want to go deeper?
+Did you know that PHP powers a huge portion of the web, including platforms like WordPress and Facebook (in its early days)? It runs on the server and is great for building dynamic websites and APIs. Want to go deeper?
 
 ### Standalone vs connected to HTML
 
-JavaScript can be run in two ways: through HTML or on its own. How? Read on.
+PHP can be run in two ways: through HTML or on its own. How? Read on.
 
 **Standalone**
 
-JavaScript can be run with a runtime. Originally it needed HTML (like CSS), but now you can run it directly from the terminal with [Node.js](https://nodejs.org/en/download). Once installed, in the terminal run:
+PHP can be run directly from the terminal. Once PHP is installed, in the terminal run:
 
 ```bash
-node namafile.js
+php namafile.php
 ```
 
 Example:
 
 ```bash
-node main.js
+php main.php
 ```
 
 **Connected to HTML**
 
-As with CSS, we import the file. Create a new file, e.g. `main.js`, then include it inside the `<body>` tag.
+Unlike CSS or JavaScript, PHP is embedded directly inside HTML using `<?php ... ?>` tags. Save the file with a `.php` extension.
 
-```html
+```php
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Document</title>
   </head>
   <body>
-    <script src="main.js"></script>
-    <!-- Import like this -->
+    <?php
+      // Your PHP code here
+      echo "Hello, World!";
+    ?>
   </body>
 </html>
 ```
 
 ## Programming concepts
 
-These are the basic concepts of a programming language, especially JavaScript. The same ideas apply to Python, Java, Go, etc.
+These are the basic concepts of a programming language, especially PHP. The same ideas apply to JavaScript, Python, Java, Go, etc.
 
 ### Comments
 
-As in HTML, CSS, and most languages, you can write comments—the syntax is just different. Use `//`.
+As in HTML, CSS, and most languages, you can write comments—the syntax is just different. Use `//` or `#`.
 
-```javascript
+```php
 // This is a comment
+# This also works
 ```
 
 ### Variables
 
 **Syntax**
 
-Two keywords are commonly used to define variables that hold values of a given type: `let` and `const`.
+In PHP, all variables start with a `$` sign. You don't need a keyword like `let` or `const`—just assign directly.
 
-**let**
+**Mutable variable**
 
 Use for values that may change later. In this example, the value is updated from 10 to 12.
 
-```javascript
-let age = 10;
-age = 12;
+```php
+$age = 10;
+$age = 12;
 ```
 
-**const**
+**Constant**
 
 Use for values that stay the same. If you try to change them, you'll get an error.
 
-```javascript
-const name = "John";
-name = "Dewi"; // This will cause an error
+```php
+define("NAME", "John");
+// NAME = "Dewi"; // This will cause an error
 ```
 
 **Naming rules**
 
-- **No spaces** — Wrong: `let nama lengkap = "john doe"`
-- **Camel case** — Correct: `let fullName = "john doe"`
-- **Snake case** — Correct: `let full_name = "john doe"`
+- **No spaces** — Wrong: `$nama lengkap = "john doe"`
+- **Camel case** — Correct: `$fullName = "john doe"`
+- **Snake case** — Correct: `$full_name = "john doe"`
 
 ### Data types
 
-Values stored in variables have different types. Here are some common ones. For a full list, see [Data types in JavaScript](https://codingstudio.id/blog/tipe-data-javascript/).
+Values stored in variables have different types. Here are some common ones.
 
 **String**
 
 Must be wrapped in single or double quotes, e.g. `"bla bla"`. In other words, text.
 
-```javascript
-const text = "Welcome";
+```php
+$text = "Welcome";
 ```
 
 **Boolean**
 
-Either **true** or **false** (or 1 for true, 0 for false). Often used for conditions or flags.
+Either **true** or **false**. Often used for conditions or flags.
 
-```javascript
-const isMarried = false;
+```php
+$isMarried = false;
 ```
 
 **Integer**
 
 Whole numbers like 8, 1, 3, 100, etc.
 
-```javascript
-const year = 2025;
+```php
+$year = 2025;
 ```
 
 **Array**
 
 Holds multiple values in one variable.
 
-```javascript
-const container = ["joko", 19, true];
+```php
+$container = ["joko", 19, true];
 ```
 
-**Object**
+**Associative Array (Object-like)**
 
 Stores structured information with keys and values.
 
-```javascript
-const user = {
-  username: "john doe",
-  age: 12,
-  isMarried: false,
-};
+```php
+$user = [
+  "username" => "john doe",
+  "age" => 12,
+  "isMarried" => false,
+];
 ```
 
 ### Conditionals
@@ -295,9 +298,9 @@ We can combine what we've learned to build more complex programs using condition
 
 **if**
 
-You can use simple `if`, branching with `else` or `else if`, combine them, or nest `if` inside `if`.
+You can use simple `if`, branching with `else` or `elseif`, combine them, or nest `if` inside `if`.
 
-```javascript
+```php
 if (true) {
   // action
 }
@@ -305,72 +308,97 @@ if (true) {
 
 **Logical operators**
 
-Here are some examples. Say we have `const atSchool = false; const age = 3`:
+Here are some examples. Say we have `$atSchool = false;` and `$age = 3`:
 
-- `!atSchool` — **!** is negation (the opposite). So this is **true**.
-- `atSchool && age > 1` — **&&** means "and". Both must be true for the whole expression to be true; if either is false, the whole thing is **false**.
-- `atSchool || age > 1` — **||** means "or". If at least one is true, the whole expression is **true**.
+- `!$atSchool` — **!** is negation (the opposite). So this is **true**.
+- `$atSchool && $age > 1` — **&&** means "and". Both must be true for the whole expression to be true; if either is false, the whole thing is **false**.
+- `$atSchool || $age > 1` — **||** means "or". If at least one is true, the whole expression is **true**.
 
 Once you get this, try to guess the output of:
 
-```javascript
-const isMarried = false;
-const age = 28;
+```php
+$isMarried = false;
+$age = 28;
 
-if (isMarried) {
-  console.log("congrats");
-} else if (!isMarried && age > 30) {
-  console.log("hope you find a match");
+if ($isMarried) {
+  echo "congrats";
+} elseif (!$isMarried && $age > 30) {
+  echo "hope you find a match";
 } else {
-  console.log("hang in there");
+  echo "hang in there";
 }
 ```
 
 ### Functions
 
-You know functions from math—they take an input and give an output. In code, functions wrap a set of statements in one place and can take parameters (like f(x) where x is the parameter), use those values, and return a result. In JavaScript there are built-in functions and user-defined functions.
+You know functions from math—they take an input and give an output. In code, functions wrap a set of statements in one place and can take parameters (like f(x) where x is the parameter), use those values, and return a result. In PHP there are built-in functions and user-defined functions.
 
 **Built-in functions**
 
-JavaScript has many built-in functions—try them on variables, objects, classes, arrays, etc. Below is an example using `concat`. When you use libraries, you'll use even more built-ins.
+PHP has many built-in functions—try them on strings, arrays, numbers, etc. Below is an example using string concatenation. When you use libraries, you'll use even more built-ins.
 
-```javascript
-const cityName = "DKI";
-cityName.concat("Jakarta");
+```php
+$cityName = "DKI";
+echo $cityName . " Jakarta";
+// or: echo implode(" ", ["DKI", "Jakarta"]);
 ```
 
 **User-defined functions**
 
-You can define your own functions. You can have more than one parameter, and the function can **return** a value or not (e.g. it might only call `console.log`).
+You can define your own functions. You can have more than one parameter, and the function can **return** a value or not (e.g. it might only call `echo`).
 
-```javascript
-function add(a, b) {
-  return a + b;
+```php
+function add($a, $b) {
+  return $a + $b;
 }
 ```
 
-## DOM
+## Dynamic HTML with PHP
 
-The DOM (Document Object Model) is how JavaScript manipulates elements and makes your site interactive. Make sure you're comfortable with the concepts above first.
+PHP runs on the **server**, so it generates HTML before it reaches the browser. This is how you make your site dynamic without relying on the browser.
 
-### Step 1: Selecting elements
+### Step 1: Output dynamic content
 
-You can turn HTML elements into variables. `document` is a global object with many uses; one of them is selecting elements. `querySelector()` is one of its methods.
+Use `echo` to print HTML content from PHP variables.
 
-```javascript
-const title = document.querySelector("h1"); // select by tag name
-const header = document.querySelector(".header"); // select by class
+```php
+<?php $title = "Welcome to my site!"; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Portfolio</title></head>
+  <body>
+    <h1 class="header"><?php echo $title; ?></h1>
+  </body>
+</html>
 ```
 
-### Step 2: Adding events
+### Step 2: Handle user interaction with forms
 
-Next, attach events or behavior to elements. Here we use the `click` event: when the heading is clicked, an alert appears. Note that `addEventListener(event, function)` takes two arguments: the **event** and the **function**.
+Since PHP runs on the server, user interactions (like button clicks) are handled via HTML forms submitted to a PHP script.
 
-```javascript
-const title = document.querySelector(".header"); // step 1
-title.addEventListener("click", function () {
-  alert("Welcome!");
-});
+**form.php**
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Form</title></head>
+  <body>
+    <form method="POST" action="process.php">
+      <input type="text" name="username" placeholder="Enter your name" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
+```
+
+**process.php**
+
+```php
+<?php
+  $username = $_POST["username"];
+  echo "Hello, " . $username . "!";
+?>
 ```
 
 ## Ready?
@@ -404,11 +432,28 @@ Here you need to understand HTML concepts: list elements, headings, images, and 
 
 ## Level 2: Portfolio section
 
-Here you need to combine HTML (buttons), CSS (layout), and JavaScript (DOM). This is the layout prototype—good luck!
+Here you need to combine HTML (buttons), CSS (layout), and PHP (server-side redirect). This is the layout prototype—good luck!
 
 ### Tips and requirements
 
-- When the "See more" (or similar) button is clicked, it should go to your Instagram page
+- When the "See more" (or similar) button is clicked, it should go to your Instagram page. Use a PHP redirect or a simple HTML anchor:
+
+```php
+<?php
+  // Redirect using PHP (place at top of file, before any HTML output)
+  header("Location: https://instagram.com/@username");
+  exit();
+?>
+```
+
+Or simply with an HTML anchor tag:
+
+```html
+<a href="https://instagram.com/@username">
+  <button>See more</button>
+</a>
+```
+
 - Match the layout exactly. You can use **flexbox** in CSS:
 
 ```html
@@ -418,17 +463,8 @@ Here you need to combine HTML (buttons), CSS (layout), and JavaScript (DOM). Thi
 </div>
 ```
 
-- Use the `window` object to navigate to another page in your click handler: `window.location.href = "https://instagram.com/@username"` inside the event function
-
 ![Level 2 layout](../assets/frontend/4.png)
 
-<Card
-  title="Submit"
-  icon="upload"
-  href="https://app.fysite.id/submit?course_id=1&subcourse_id=1"
-  arrow="true"
-  cta="Submit here"
->
-  Add your Github link or project in Google Drive then the community will review
-  and help you together. Please stay tuned on Discord to see the latest updates!
+<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=1" arrow="true" cta="Submit here">
+  Add your Github link or project in Google Drive then the community will review and help you together. Please stay tuned on Discord to see the latest updates!
 </Card>
