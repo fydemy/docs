@@ -362,7 +362,7 @@ public function index()
 }
 ```
 
-`Book::all()` setara dengan `db.books.findMany()` di Prisma — mengambil semua data dari tabel.
+`Book::all()` mengambil semua data dari tabel.
 
 Buka **Thunder Client**, kirim GET request ke `http://localhost:8000/api/books`, dan klik **Send**. Responsnya `[]` karena belum ada buku yang ditambahkan.
 
@@ -393,7 +393,7 @@ public function store(Request $request)
 }
 ```
 
-Berbeda dari Express yang butuh `app.use(express.json())`, Laravel **otomatis** mem-parse JSON request body. `$request->validate()` juga langsung mengembalikan error 422 jika validasi gagal — tidak perlu try/catch manual!
+Laravel **otomatis** mem-parse JSON request body. `$request->validate()` juga langsung mengembalikan error 422 jika validasi gagal — tidak perlu try/catch manual!
 
 Di Thunder Client, ganti method ke **POST**, tambahkan JSON body seperti `{"nama": "Laskar Pelangi", "peminjam": "Budi"}`, dan klik **Send**. Kamu akan melihat pesan sukses.
 
