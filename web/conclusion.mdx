@@ -4,83 +4,83 @@ title: 'conclusion'
 
 ## Overview
 
-Halaman website yang kamu lihat memiliki **3 aspek berbeda**:
+Every website you see has **3 different aspects**:
 
-- **Skeleton (Blade/HTML):** Seperti blok saat menulis di Notion
-- **Skin (CSS):** Styling tampilan
-- **Brain (PHP/Laravel):** Logic dan backend
+- **Skeleton (Blade/HTML):** Like blocks when writing in Notion
+- **Skin (CSS):** Visual styling
+- **Brain (PHP/Laravel):** Logic and backend
 
 ---
 
 # PHP
 
-**PHP (Hypertext Preprocessor)** adalah bahasa pemrograman server-side yang digunakan untuk membangun website dinamis.
-Ini adalah **bahasa utama** yang harus dipelajari sebelum masuk ke Laravel.
+**PHP (Hypertext Preprocessor)** is a server-side programming language used to build dynamic websites.
+It is the **primary language** you should learn before moving on to Laravel.
 
 ---
 
-## Cara Memulai
+## Getting Started
 
-Install **XAMPP** atau **Laragon** untuk environment lokal. Buat file bernama: `index.php`.
+Install **XAMPP** or **Laragon** for your local environment. Create a file named: `index.php`.
 
-Editor yang direkomendasikan:
+Recommended editors:
 
 - Visual Studio Code
 - Cursor
 - PhpStorm
 
-Contoh PHP dasar:
+Basic PHP example:
 
 ```php
 <?php
 echo "Hello World";
 
-$nama = "Budi";
-echo "Halo, " . $nama;
+$name = "John";
+echo "Hello, " . $name;
 ```
 
 ---
 
-## Tipe Data & Variabel
+## Data Types & Variables
 
-PHP adalah bahasa yang _loosely typed_. Variabel diawali dengan tanda `$`:
+PHP is a _loosely typed_ language. Variables are prefixed with a `$` sign:
 
 ```php
-$nama   = "Budi";              // String
-$umur   = 25;                  // Integer
-$tinggi = 1.75;                // Float
-$aktif  = true;                // Boolean
-$hobi   = ["coding", "membaca"]; // Array
+$name   = "John";                    // String
+$age    = 25;                        // Integer
+$height = 1.75;                      // Float
+$active = true;                      // Boolean
+$hobbies = ["coding", "reading"];    // Array
 ```
 
 ---
 
 # Laravel
 
-**Laravel** adalah framework PHP paling populer saat ini. Laravel menyederhanakan proses pengembangan web dengan menyediakan tools bawaan yang lengkap.
+**Laravel** is the most popular PHP framework today. Laravel simplifies the web development process by providing a comprehensive set of built-in tools.
 
-Dokumentasi resmi: https://laravel.com/docs
+Official documentation: https://laravel.com/docs
 
 ---
 
-## Cara Memulai
+## Getting Started
 
-Install **Composer** terlebih dahulu (package manager PHP):
+First, install **Composer** (PHP's package manager):
 
 ```bash
 # Install Laravel via Composer
-composer create-project laravel/laravel nama-proyek
+composer create-project laravel/laravel my-project
 
-# Masuk ke folder proyek
-cd nama-proyek
+# Navigate into the project folder
+cd my-project
 
-# Jalankan server development
+# Start the development server
 php artisan serve
 ```
 
 ---
 
-## Struktur Folder
+## Folder Structure
 
 ```
 app/
@@ -88,59 +88,59 @@ app/
   Http/
     Controllers/
 resources/
-  views/        ← Blade templates (seperti React components)
+  views/        ← Blade templates (like React components)
 database/
   migrations/
 routes/
-  web.php       ← Routing utama
+  web.php       ← Main routing
   api.php       ← API routes
 ```
 
 ---
 
-# Blade Templates (Pengganti HTML)
+# Blade Templates (HTML Replacement)
 
-**Blade** adalah template engine bawaan Laravel. tetapi untuk PHP.
-File Blade menggunakan ekstensi `.blade.php`:
+**Blade** is Laravel's built-in template engine — but for PHP.
+Blade files use the `.blade.php` extension:
 
 ```html
 <!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>{{ $judul }}</title>
+    <title>{{ $title }}</title>
   </head>
   <body>
-    <h1>{{ $judul }}</h1>
-    <p>Halo, {{ $nama }}!</p>
+    <h1>{{ $title }}</h1>
+    <p>Hello, {{ $name }}!</p>
   </body>
 </html>
 ```
 
 ---
 
-## Komponen Blade (Pengganti React Components)
+## Blade Components (React Components Replacement)
 
-Seperti React Components, Blade juga memiliki komponen yang bisa dipakai ulang:
+Just like React Components, Blade also has reusable components:
 
 ```html
 <!-- resources/views/components/button.blade.php -->
 <button {{ $attributes->merge(['class' => 'btn btn-primary']) }}> {{ $slot }}</button>
 
-<!-- Cara pakai di view lain -->
+<!-- How to use it in another view -->
 <x-button class="btn-lg"> Login </x-button>
 ```
 
 ---
 
-## Logika di Blade
+## Logic in Blade
 
 ```html
-{{-- Kondisional --}} @if ($user->isAdmin())
-<p>Selamat datang, Admin!</p>
+{{-- Conditionals --}} @if ($user->isAdmin())
+<p>Welcome, Admin!</p>
 @else
-<p>Selamat datang, {{ $user->name }}</p>
+<p>Welcome, {{ $user->name }}</p>
 @endif {{-- Looping --}} @foreach ($posts as $post)
 <div>
   <h2>{{ $post->title }}</h2>
@@ -151,30 +151,30 @@ Seperti React Components, Blade juga memiliki komponen yang bisa dipakai ulang:
 
 ---
 
-# CSS di Laravel
+# CSS in Laravel
 
-CSS di Laravel sama persis. Kamu bisa gunakan **TailwindCSS** yang sudah tersedia secara default di Laravel 11+.
+CSS in Laravel works exactly the same. You can use **TailwindCSS**, which is available by default in Laravel 11+.
 
-Dokumentasi TailwindCSS: https://tailwindcss.com
+TailwindCSS documentation: https://tailwindcss.com
 
-Install **TailwindCSS IntelliSense** extension untuk autocomplete.
+Install the **TailwindCSS IntelliSense** extension for autocomplete.
 
 ---
 
-## TailwindCSS (Sama Seperti React)
+## TailwindCSS (Same as React)
 
-### Warna
+### Colors
 
 ```
 bg-red-200
 text-blue-900
 ```
 
-Angka lebih besar → warna lebih kuat.
+Higher numbers → stronger/darker colors.
 
 ---
 
-### Ukuran
+### Sizing
 
 ```
 text-lg
@@ -211,7 +211,7 @@ mx-auto
 
 # Routing
 
-Di Laravel, routing didefinisikan di file `routes/web.php`:
+In Laravel, routing is defined in the `routes/web.php` file:
 
 ```php
 // routes/web.php
@@ -231,10 +231,10 @@ Route::delete('/user/{id}', [UserController::class, 'destroy']);
 ## Dynamic Routes
 
 ```php
-// Definisi route dengan parameter
+// Define route with a parameter
 Route::get('/user/{id}', [UserController::class, 'show']);
 
-// Di dalam Controller
+// Inside the Controller
 public function show($id)
 {
     $user = User::findOrFail($id);
@@ -244,9 +244,9 @@ public function show($id)
 
 ---
 
-# Controller
+# Controllers
 
-Controller di Laravel:
+Controllers in Laravel:
 
 ```php
 // app/Http/Controllers/UserController.php
@@ -271,7 +271,7 @@ class UserController extends Controller
 }
 ```
 
-Buat Controller baru dengan Artisan:
+Create a new Controller with Artisan:
 
 ```bash
 php artisan make:controller UserController
@@ -281,7 +281,7 @@ php artisan make:controller UserController
 
 # Eloquent ORM
 
-**Eloquent** adalah ORM bawaan Laravel:
+**Eloquent** is Laravel's built-in ORM:
 
 ```php
 // app/Models/User.php
@@ -294,7 +294,7 @@ class User extends Model
 {
     protected $fillable = ['name', 'email', 'password'];
 
-    // Relasi: User punya banyak Post
+    // Relationship: User has many Posts
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -304,25 +304,25 @@ class User extends Model
 
 ---
 
-## Query dengan Eloquent
+## Querying with Eloquent
 
 ```php
-// Ambil semua data
+// Retrieve all records
 $users = User::all();
 
-// Cari berdasarkan ID
+// Find by ID
 $user = User::find(1);
 
 // Filter
 $admins = User::where('role', 'admin')->get();
 
-// Buat data baru
-User::create(['name' => 'Budi', 'email' => 'budi@email.com']);
+// Create a new record
+User::create(['name' => 'John', 'email' => 'john@email.com']);
 
 // Update
-$user->update(['name' => 'Siti']);
+$user->update(['name' => 'Jane']);
 
-// Hapus
+// Delete
 $user->delete();
 ```
 
@@ -330,13 +330,13 @@ $user->delete();
 
 # Migrations (Database Schema)
 
-Migration di Laravel menggantikan **Prisma Schema**. Digunakan untuk membuat dan mengubah struktur tabel database:
+Migrations in Laravel replace **Prisma Schema**. They are used to create and modify database table structures:
 
 ```bash
-# Buat migration baru
+# Create a new migration
 php artisan make:migration create_posts_table
 
-# Jalankan migration
+# Run migrations
 php artisan migrate
 
 # Rollback
@@ -361,38 +361,38 @@ public function up(): void
 
 # Authentication
 
-Laravel menyediakan **Breeze** atau **Jetstream** sebagai starter kit autentikasi, menggantikan Better Auth:
+Laravel provides **Breeze** or **Jetstream** as authentication starter kits, replacing Better Auth:
 
 ```bash
 # Install Laravel Breeze (simple)
 composer require laravel/breeze --dev
 php artisan breeze:install
 
-# Atau Jetstream (lengkap dengan teams)
+# Or Jetstream (full-featured with teams)
 composer require laravel/jetstream
 php artisan jetstream:install livewire
 ```
 
-Fitur yang sudah tersedia setelah install:
+Features available after installation:
 
-- Login dengan email/password
-- Register akun baru
-- Forgot password / reset password
-- Social login via Laravel Socialite (Google, GitHub, dll)
+- Login with email/password
+- New account registration
+- Forgot password / password reset
+- Social login via Laravel Socialite (Google, GitHub, etc.)
 
 ---
 
-# Middleware (Proteksi Route)
+# Middleware (Route Protection)
 
-Middleware di Laravel berfungsi sama seperti middleware di Next.js, untuk memproteksi route:
+Middleware in Laravel works the same as middleware in Next.js — it protects routes:
 
 ```php
-// Proteksi route dengan middleware auth
+// Protect a route with the auth middleware
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
-// Grup route yang dilindungi
+// Group of protected routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show']);
     Route::get('/settings', [SettingController::class, 'index']);
@@ -401,15 +401,15 @@ Route::middleware(['auth'])->group(function () {
 
 ---
 
-# API dengan Laravel
+# API with Laravel
 
-Laravel bisa digunakan sebagai pure API backend. Gunakan `routes/api.php` untuk mendefinisikan endpoint:
+Laravel can be used as a pure API backend. Use `routes/api.php` to define endpoints:
 
 ```php
 // routes/api.php
 Route::apiResource('users', UserController::class);
 
-// Menghasilkan route otomatis:
+// Automatically generates the following routes:
 // GET    /api/users          → index()
 // POST   /api/users          → store()
 // GET    /api/users/{id}     → show()
@@ -419,25 +419,25 @@ Route::apiResource('users', UserController::class);
 
 ---
 
-# Rendering di Laravel
+# Rendering in Laravel
 
-## Server Side Rendering (Default Laravel)
+## Server Side Rendering (Laravel Default)
 
-Laravel secara default menggunakan SSR. Controller mengambil data lalu mengirim ke view Blade:
+Laravel uses SSR by default. The Controller fetches data and sends it to a Blade view:
 
 ```php
 public function index()
 {
     $posts = Post::with('user')->latest()->get();
-    return view('posts.index', compact('posts')); // Data dikirim ke Blade
+    return view('posts.index', compact('posts')); // Data is passed to Blade
 }
 ```
 
 ---
 
-## Livewire (Pengganti useState & CSR)
+## Livewire (useState & CSR Replacement)
 
-**Livewire** adalah tool untuk interaktivitas tanpa JavaScript:
+**Livewire** is a tool for adding interactivity without writing JavaScript:
 
 ```bash
 php artisan make:livewire Counter
@@ -465,7 +465,7 @@ class Counter extends Component
 <!-- resources/views/livewire/counter.blade.php -->
 <div>
   <h1>{{ $count }}</h1>
-  <button wire:click="increment">Tambah</button>
+  <button wire:click="increment">Increment</button>
 </div>
 ```
 
@@ -477,32 +477,32 @@ class Counter extends Component
 
 https://forge.laravel.com | https://ploi.io
 
-Menggantikan **Vercel** untuk deployment Laravel. Fitur utama:
+Replaces **Vercel** for deploying Laravel applications. Key features:
 
-- Server provisioning otomatis
+- Automatic server provisioning
 - GitHub integration & auto-deploy
-- SSL otomatis
+- Automatic SSL
 - Database management
 
 ---
 
 ## Database
 
-Laravel mendukung berbagai database:
+Laravel supports multiple databases:
 
-- **MySQL / PostgreSQL** — paling umum di production
-- **Supabase** — PostgreSQL cloud, sama seperti di Next.js
-- **SQLite** — untuk development lokal
+- **MySQL / PostgreSQL** — most common in production
+- **Supabase** — PostgreSQL cloud, same as in Next.js
+- **SQLite** — for local development
 
 ---
 
-## OpenRouter (Sama)
+## OpenRouter (Same)
 
-Platform AI API dengan free credits.
+AI API platform with free credits.
 
 https://openrouter.ai
 
-Bisa diintegrasikan dengan Laravel menggunakan HTTP Client bawaan:
+Can be integrated with Laravel using the built-in HTTP Client:
 
 ```php
 $response = Http::withHeaders([
@@ -517,9 +517,9 @@ $response = Http::withHeaders([
 
 # Libraries
 
-## Eloquent (ORM Bawaan)
+## Eloquent (Built-in ORM)
 
-Sudah termasuk di Laravel. Tidak perlu install terpisah seperti Prisma.
+Already included in Laravel. No need for a separate install like Prisma.
 
 ---
 
@@ -527,7 +527,7 @@ Sudah termasuk di Laravel. Tidak perlu install terpisah seperti Prisma.
 
 https://laravel.com/docs/socialite
 
-Menggantikan Better Auth untuk social login:
+Replaces Better Auth for social login:
 
 - Google
 - GitHub
@@ -544,7 +544,7 @@ composer require laravel/socialite
 
 https://spatie.be/docs/laravel-permission
 
-Library populer untuk roles & permissions di Laravel.
+A popular library for roles & permissions in Laravel.
 
 ```bash
 composer require spatie/laravel-permission
@@ -552,20 +552,20 @@ composer require spatie/laravel-permission
 
 ---
 
-# Tabel Perbandingan
+# Comparison Table
 
-| Konsep           | JavaScript / Next.js | Laravel / PHP                 |
+| Concept          | JavaScript / Next.js | Laravel / PHP                 |
 | ---------------- | -------------------- | ----------------------------- |
 | Template Engine  | JSX / `.tsx`         | Blade (`.blade.php`)          |
-| Komponen UI      | React Components     | Blade Components (`x-button`) |
+| UI Components    | React Components     | Blade Components (`x-button`) |
 | State Management | `useState`           | Livewire                      |
 | Side Effects     | `useEffect`          | Events / Observers            |
-| Styling          | TailwindCSS          | TailwindCSS (sama)            |
-| ORM Database     | Prisma               | Eloquent (bawaan)             |
+| Styling          | TailwindCSS          | TailwindCSS (same)            |
+| Database ORM     | Prisma               | Eloquent (built-in)           |
 | Routing          | File-based (Next.js) | `routes/web.php`              |
 | API Routes       | `app/api/route.ts`   | `routes/api.php`              |
-| Autentikasi      | Better Auth          | Laravel Breeze / Jetstream    |
-| Middleware       | `middleware.ts`      | Middleware PHP class          |
+| Authentication   | Better Auth          | Laravel Breeze / Jetstream    |
+| Middleware       | `middleware.ts`      | PHP Middleware class          |
 | Deployment       | Vercel               | Laravel Forge / Ploi          |
 | Database BaaS    | Supabase             | Supabase / PlanetScale        |
 | Package Manager  | npm / yarn           | Composer                      |
@@ -576,16 +576,16 @@ composer require spatie/laravel-permission
 
 # Bonus
 
-Starter kit Laravel dengan setup lengkap:
+Laravel starter kit with a complete setup:
 
-- Eloquent (bawaan)
+- Eloquent (built-in)
 - Laravel Breeze (auth)
-- Livewire (interaktivitas)
+- Livewire (interactivity)
 - TailwindCSS (styling)
 
 ```bash
-composer create-project laravel/laravel nama-proyek
-cd nama-proyek
+composer create-project laravel/laravel my-project
+cd my-project
 composer require laravel/breeze --dev
 php artisan breeze:install
 npm install && npm run dev
@@ -597,8 +597,8 @@ php artisan serve
 
 # Community
 
-Pertanyaan dan kontribusi:
+Questions and contributions:
 
 https://fydemy.com
 
-Bergabunglah ke **Fydemy Discord** untuk berdiskusi dan berbagi pengalaman belajar Laravel!
+Join the **Fydemy Discord** to discuss and share your Laravel learning journey!

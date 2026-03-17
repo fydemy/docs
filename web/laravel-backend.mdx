@@ -2,116 +2,116 @@
 title: 'The Kitchen — Laravel'
 ---
 
-Setelah belajar frontend dasar dengan HTML, CSS, dan JavaScript, pernah bertanya-tanya bagaimana situs seperti Tokopedia, Instagram, TikTok, dan lainnya bekerja? Lumayan banyak ya? Bisa saja kita lakukan dengan frontend saja — tapi datanya akan statis, tidak ada postingan orang lain yang update, tidak ada stories baru.
+After learning frontend basics with HTML, CSS, and JavaScript, have you ever wondered how sites like Tokopedia, Instagram, TikTok, and others actually work? There are quite a few, right? We could do it all with just frontend — but the data would be static, no posts from other people updating, no new stories.
 
-Di sinilah terasa agak kering karena kita berurusan dengan database, data, logika, dan API. Di sini juga pemahaman programmingmu benar-benar diuji!
+This is where things get a bit dry because we're dealing with databases, data, logic, and APIs. This is also where your programming understanding gets truly tested!
 
-Bayangkan **backend** seperti dapur: ia menyiapkan "makanan" yang kemudian diantarkan oleh pelayan (API) ke pelanggan (frontend).
+Think of the **backend** like a kitchen: it prepares the "food" that's then delivered by the waiter (API) to the customer (frontend).
 
-Itu gambaran besarnya. Supaya lebih terasa, yuk langsung praktek.
+That's the big picture. To make it more concrete, let's jump straight into practice.
 
 ## Backend
 
-Di sinilah logika pemrograman tinggal. Kita akan memakai **Laravel** — framework PHP yang powerful dan elegan. Backend mencakup database, routing API, logika bisnis, dan masih banyak lagi.
+This is where the programming logic lives. We'll be using **Laravel** — a powerful and elegant PHP framework. The backend covers databases, API routing, business logic, and much more.
 
 ### Database
 
-Menurutmu, di mana situs seperti Instagram menyimpan data pengguna dan postingan? Di Excel, Word, Notepad? Bisa saja, tapi tidak akan scalable. Kita menggunakan **database** — mirip tabel — dan jenisnya ada **relasional** dan **non-relasional**.
+Where do you think sites like Instagram store user data and posts? In Excel, Word, Notepad? Technically possible, but it won't scale. We use a **database** — similar to a table — and there are two main types: **relational** and **non-relational**.
 
-- **Relasional** — Kamu mendefinisikan nama kolom dan tipe datanya (strukturnya). Contoh: MySQL, PostgreSQL, dll.
-- **Non-relasional** — Tidak ada skema tetap; kamu menyisipkan data tanpa mendefinisikan struktur terlebih dahulu, sering dalam bentuk objek/dokumen. Contoh: MongoDB, Redis.
+- **Relational** — You define column names and their data types (the structure). Examples: MySQL, PostgreSQL, etc.
+- **Non-relational** — No fixed schema; you insert data without defining the structure upfront, often in the form of objects/documents. Examples: MongoDB, Redis.
 
-### Setup database
+### Database Setup
 
-- Download [Laragon](https://laragon.org/docs/install). Jalankan installer dan terima pengaturan default.
-- Setelah instalasi, buka aplikasinya dan klik **Start All**.
+- Download [Laragon](https://laragon.org/docs/install). Run the installer and accept the default settings.
+- Once installed, open the app and click **Start All**.
 
 ![Laragon](../assets/backend/2.png)
 
-- Buka `localhost/phpmyadmin` di browser. Buat database baru dengan klik **New** di sidebar, masukkan nama, lalu klik **Create**.
+- Open `localhost/phpmyadmin` in your browser. Create a new database by clicking **New** in the sidebar, enter a name, then click **Create**.
 
 ![phpMyAdmin new database](../assets/backend/3.png)
 
-### API routing
+### API Routing
 
-Aplikasi yang kompleks biasanya punya banyak fitur — seperti Instagram: upload, edit, hapus, lihat postingan, lihat profil, algoritma, dll. Kita memecahnya menjadi **routes**. Contohnya:
+Complex applications usually have many features — like Instagram: upload, edit, delete, view posts, view profiles, algorithm, etc. We break these down into **routes**. For example:
 
-## Let's build the API
+## Let's Build the API
 
 APIs often expose **CRUD** (Create, Read, Update, Delete) via different routes. For example:
 
 ![CRUD routes](../assets/backend/4.png)
 
-- **GET** `/posts` — daftar/lihat postingan
-- **PUT** `/posts/{postId}` — update postingan berdasarkan ID
+- **GET** `/posts` — list/view posts
+- **PUT** `/posts/{postId}` — update a post by ID
 
-### Bagaimana cara menjalankannya?
+### How Do You Run It?
 
-Install [Composer](https://getcomposer.org/download) terlebih dahulu. Kita akan menggunakan **Laravel** untuk mengelola API dan database sekaligus.
+First, install [Composer](https://getcomposer.org/download). We'll use **Laravel** to manage both the API and the database.
 
 ---
 
 # Laravel
 
-Laravel adalah framework PHP yang sudah mencakup hampir semua yang kita butuhkan: routing, ORM, validasi, dan masih banyak lagi.
+Laravel is a PHP framework that already covers almost everything we need: routing, ORM, validation, and much more.
 
-Pastikan **PHP** dan **Composer** (package manager PHP, seperti NPM tapi untuk PHP) sudah terinstall. Cek dengan:
+Make sure **PHP** and **Composer** (PHP's package manager, like NPM but for PHP) are already installed. Check with:
 
 ```bash
 php -v
 composer -v
 ```
 
-Buat project Laravel baru dan masuk ke foldernya:
+Create a new Laravel project and navigate into the folder:
 
 ```bash
 composer create-project laravel/laravel library
 cd library
 ```
 
-Ini seperti `npm init -y` tapi jauh lebih lengkap — Laravel langsung menyiapkan seluruh struktur project.
+This is like `npm init -y` but far more complete — Laravel immediately sets up the entire project structure.
 
 ## Fundamentals
 
-### Struktur folder penting
+### Important Folder Structure
 
 ```
 library/
 ├── app/
 │   ├── Http/
-│   │   ├── Controllers/     ← logika request
-│   │   └── Requests/        ← validasi request
-│   └── Models/              ← representasi tabel database
+│   │   ├── Controllers/     ← request logic
+│   │   └── Requests/        ← request validation
+│   └── Models/              ← database table representation
 ├── routes/
-│   ├── api.php              ← definisi route API
-│   └── web.php              ← route untuk halaman web
+│   ├── api.php              ← API route definitions
+│   └── web.php              ← routes for web pages
 ├── database/
-│   └── migrations/          ← struktur tabel (seperti schema Prisma)
-├── .env                     ← konfigurasi & variabel rahasia
-└── artisan                  ← CLI tool bawaan Laravel
+│   └── migrations/          ← table structure (like Prisma schema)
+├── .env                     ← configuration & secret variables
+└── artisan                  ← Laravel's built-in CLI tool
 ```
 
-### Menginstall package
+### Installing Packages
 
-Untuk menginstall package di Laravel, gunakan Composer:
+To install a package in Laravel, use Composer:
 
 ```bash
-composer require [nama-package]
+composer require [package-name]
 ```
 
-Contoh:
+Example:
 
 ```bash
 composer require laravel/sanctum
 ```
 
-Untuk package yang hanya dibutuhkan saat **development**, gunakan flag `--dev`:
+For packages only needed during **development**, use the `--dev` flag:
 
 ```bash
 composer require --dev barryvdh/laravel-debugbar
 ```
 
-Di `composer.json`, package yang kamu install muncul di `require` atau `require-dev`:
+In `composer.json`, installed packages appear under `require` or `require-dev`:
 
 ```json
 {
@@ -128,9 +128,9 @@ Di `composer.json`, package yang kamu install muncul di `require` atau `require-
 
 ### .env
 
-File `.env` adalah salah satu file terpenting untuk menyimpan **variabel rahasia**. Nilainya ada di server, bukan di kode — jadi tetap aman. Contoh: koneksi database, port, API key.
+The `.env` file is one of the most important files for storing **secret variables**. Its values live on the server, not in the code — so they stay safe. Examples: database connection, port, API keys.
 
-Laravel sudah otomatis membaca `.env` tanpa perlu install library tambahan.
+Laravel automatically reads `.env` without needing to install any additional library.
 
 **.env**
 
@@ -146,64 +146,64 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Di file manapun di Laravel, akses variabel `.env` dengan helper `env()`:
+From anywhere in Laravel, access `.env` variables using the `env()` helper:
 
 ```php
 $dbName = env('DB_DATABASE'); // 'library'
 ```
 
-Atau gunakan `config()` untuk mengakses konfigurasi yang sudah dimapping:
+Or use `config()` to access pre-mapped configuration:
 
 ```php
 $dbName = config('database.connections.mysql.database');
 ```
 
-### Menjalankan program
+### Running the App
 
-**Cara biasa**
+**Standard way**
 
 ```bash
 php artisan serve
 ```
 
-**Dengan port kustom**
+**With a custom port**
 
 ```bash
 php artisan serve --port=8080
 ```
 
-Berbeda dengan Node.js yang harus restart manual setiap ada perubahan, kamu bisa menggunakan **[Vite HMR](https://laravel.com/docs/vite)** untuk frontend, atau cukup save & refresh untuk backend karena PHP adalah scripting language — setiap request selalu membaca file terbaru.
+Unlike Node.js which requires a manual restart on every change, you can use **[Vite HMR](https://laravel.com/docs/vite)** for the frontend, or simply save & refresh for the backend — since PHP is a scripting language, every request always reads the latest file.
 
 ### Artisan CLI
 
-`artisan` adalah perintah CLI bawaan Laravel, seperti Swiss Army Knife-nya Laravel. Beberapa perintah yang sering dipakai:
+`artisan` is Laravel's built-in CLI tool, like the Swiss Army Knife of Laravel. Some frequently used commands:
 
 ```bash
-php artisan serve          # Jalankan server development
-php artisan make:model     # Buat Model baru
-php artisan make:controller # Buat Controller baru
-php artisan migrate        # Jalankan migration ke database
-php artisan route:list     # Lihat semua route yang terdaftar
-php artisan tinker         # REPL interaktif untuk testing
+php artisan serve           # Start the development server
+php artisan make:model      # Create a new Model
+php artisan make:controller # Create a new Controller
+php artisan migrate         # Run migrations to the database
+php artisan route:list      # View all registered routes
+php artisan tinker          # Interactive REPL for testing
 ```
 
 ---
 
 # Library
 
-Ada perpustakaan yang butuh modernisasi. Kamu punya ide: buat web app agar peminjaman buku terlacak otomatis dan digital. Kamu bisa pakai Google Sheets — tapi kita bisa buat sesuatu yang lebih sederhana dan minimal, dengan hanya fitur yang dibutuhkan, bukan semua menu dan kompleksitas spreadsheet. Penasaran caranya? Ayo mulai!
+There's a library that needs modernizing. You have an idea: build a web app so book loans are tracked automatically and digitally. You could use Google Sheets — but we can build something simpler and more minimal, with only the features needed, without all the menus and complexity of a spreadsheet. Curious how? Let's get started!
 
-## Gambaran awal
+## Initial Overview
 
-Ini melanjutkan dari modul **syntax**. Pastikan kamu sudah menginstall Laravel dan setup Composer. Berikut struktur workflow API kita:
+This continues from the **syntax** module. Make sure you've already installed Laravel and set up Composer. Here's the structure of our API workflow:
 
 ![API workflow](../assets/backend/1.png)
 
-## Siap?
+## Ready?
 
-### Setup awal Laravel
+### Initial Laravel Setup
 
-Buat project baru dan konfigurasi `.env`:
+Create a new project and configure `.env`:
 
 ```
 library
@@ -226,27 +226,27 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Jalankan server:
+Start the server:
 
 ```bash
 php artisan serve
 ```
 
-Buka browser ke `localhost:8000`. Laravel sudah menampilkan halaman welcome secara default karena ada route di `routes/web.php`.
+Open your browser to `localhost:8000`. Laravel already displays a welcome page by default because there's a route in `routes/web.php`.
 
-### Setup Migration & Model
+### Migration & Model Setup
 
-Di Node.js kita memakai Prisma untuk mendefinisikan skema dan berinteraksi dengan database. Di Laravel, kita pakai **Migration** untuk struktur tabel dan **Eloquent ORM** untuk operasi database — keduanya sudah built-in.
+In Node.js we use Prisma to define the schema and interact with the database. In Laravel, we use **Migrations** for table structure and **Eloquent ORM** for database operations — both are built-in.
 
-Buat Model dan Migration sekaligus dengan satu perintah:
+Create a Model and Migration at the same time with a single command:
 
 ```bash
 php artisan make:model Book --migration
 ```
 
-Ini membuat dua file: `app/Models/Book.php` dan file migration di `database/migrations/`.
+This creates two files: `app/Models/Book.php` and a migration file in `database/migrations/`.
 
-Buka file migration (namanya ada timestamp, seperti `2024_01_01_000000_create_books_table.php`) dan edit:
+Open the migration file (its name has a timestamp, like `2024_01_01_000000_create_books_table.php`) and edit it:
 
 **database/migrations/xxxx_create_books_table.php**
 
@@ -255,30 +255,30 @@ public function up(): void
 {
     Schema::create('books', function (Blueprint $table) {
         $table->uuid('id');
-        $table->string('nama')->unique();
-        $table->string('peminjam');
+        $table->string('name')->unique();
+        $table->string('borrower');
         $table->timestamps();
     });
 }
 ```
 
-- `uuid('id')` — id unik berbentuk string random (setara `@default(uuid())` di Prisma)
-- `string('nama')->unique()` — field nama yang tidak boleh duplikat
-- `timestamps()` — otomatis menambah kolom `created_at` dan `updated_at`
+- `uuid('id')` — a unique id in the form of a random string (equivalent to `@default(uuid())` in Prisma)
+- `string('name')->unique()` — a name field that cannot be duplicated
+- `timestamps()` — automatically adds `created_at` and `updated_at` columns
 
-Terapkan migration ke database:
+Apply the migration to the database:
 
 ```bash
 php artisan migrate
 ```
 
-Buka terminal — tabel `books` sudah muncul!
+Open your terminal — the `books` table is already there!
 
 ![Laravel migrate](../assets/backend/6.png)
 
-### Setup Model
+### Model Setup
 
-Buka `app/Models/Book.php` dan tambahkan konfigurasi:
+Open `app/Models/Book.php` and add the configuration:
 
 ```php
 <?php
@@ -289,52 +289,52 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    // Karena id kita pakai UUID (string), bukan auto-increment integer
+    // Since our id uses UUID (string), not an auto-increment integer
     protected $keyType = 'string';
     public $incrementing = false;
 
-    // Whitelist field yang boleh diisi (keamanan mass assignment)
+    // Whitelist of fields that can be filled (mass assignment security)
     protected $fillable = [
-        'nama',
-        'peminjam',
+        'name',
+        'borrower',
     ];
 }
 ```
 
-`$fillable` setara dengan mendefinisikan field mana yang boleh diupdate langsung dari request. Ini adalah fitur keamanan Laravel.
+`$fillable` is equivalent to defining which fields can be updated directly from a request. This is a Laravel security feature.
 
-### Aktifkan API Routes
+### Enable API Routes
 
-Di Laravel 11+, jalankan perintah ini sekali:
+In Laravel 11+, run this command once:
 
 ```bash
 php artisan install:api
 ```
 
-Ini mengaktifkan `routes/api.php`. Semua route di file ini otomatis punya prefix `/api` — jadi route `/books` bisa diakses di `http://localhost:8000/api/books`.
+This activates `routes/api.php`. All routes in this file automatically get the `/api` prefix — so the `/books` route is accessible at `http://localhost:8000/api/books`.
 
 ---
 
-## Mari Bangun API-nya
+## Let's Build the API
 
-API biasanya mengekspos operasi **CRUD** (Create, Read, Update, Delete) lewat route yang berbeda. Contohnya:
+APIs typically expose **CRUD** (Create, Read, Update, Delete) operations via different routes. For example:
 
-- **GET** `http://localhost:8000/api/books` — list semua buku
-- **POST** `http://localhost:8000/api/books` — tambah buku
-- **PUT** `http://localhost:8000/api/books/123` — update buku dengan id `123`
-- **DELETE** `http://localhost:8000/api/books/123` — hapus buku dengan id `123`
+- **GET** `http://localhost:8000/api/books` — list all books
+- **POST** `http://localhost:8000/api/books` — add a book
+- **PUT** `http://localhost:8000/api/books/123` — update the book with id `123`
+- **DELETE** `http://localhost:8000/api/books/123` — delete the book with id `123`
 
-### Buat Controller
+### Create a Controller
 
 ```bash
 php artisan make:controller BookController --api
 ```
 
-Flag `--api` langsung membuat template dengan method-method CRUD yang dibutuhkan.
+The `--api` flag immediately creates a template with the CRUD methods needed.
 
-### Daftarkan Route
+### Register Routes
 
-Buka `routes/api.php`:
+Open `routes/api.php`:
 
 ```php
 use App\Http\Controllers\BookController;
@@ -342,21 +342,21 @@ use App\Http\Controllers\BookController;
 Route::apiResource('books', BookController::class);
 ```
 
-Satu baris ini otomatis mendaftarkan **7 route sekaligus**! Cek dengan:
+This single line automatically registers **7 routes at once**! Check with:
 
 ```bash
 php artisan route:list
 ```
 
-### Testing API
+### Testing the API
 
-Gunakan ekstensi VS Code ringan seperti **Thunder Client** untuk testing API-mu.
+Use a lightweight VS Code extension like **Thunder Client** to test your API.
 
 ![Thunder Client](../assets/backend/5.png)
 
 ### GET `/api/books`
 
-Buka `app/Http/Controllers/BookController.php` dan isi method `index()`:
+Open `app/Http/Controllers/BookController.php` and fill in the `index()` method:
 
 ```php
 use App\Models\Book;
@@ -368,15 +368,15 @@ public function index()
 }
 ```
 
-`Book::all()` mengambil semua data dari tabel.
+`Book::all()` retrieves all data from the table.
 
-Buka **Thunder Client**, kirim GET request ke `http://localhost:8000/api/books`, dan klik **Send**. Responsnya `[]` karena belum ada buku yang ditambahkan.
+Open **Thunder Client**, send a GET request to `http://localhost:8000/api/books`, and click **Send**. The response will be `[]` since no books have been added yet.
 
 ![GET books empty](../assets/backend/7.png)
 
 ### POST `/api/books`
 
-Di sini kita membaca data dari request body.
+Here we read data from the request body.
 
 ```php
 use Illuminate\Http\Request;
@@ -385,33 +385,33 @@ use Illuminate\Support\Str;
 public function store(Request $request)
 {
     $request->validate([
-        'nama'     => 'required|string|unique:books',
-        'peminjam' => 'required|string',
+        'name'     => 'required|string|unique:books',
+        'borrower' => 'required|string',
     ]);
 
     Book::create([
         'id'       => Str::uuid()->toString(),
-        'nama'     => $request->nama,
-        'peminjam' => $request->peminjam,
+        'name'     => $request->name,
+        'borrower' => $request->borrower,
     ]);
 
-    return response()->json(['message' => 'Buku berhasil ditambahkan!'], 201);
+    return response()->json(['message' => 'Book added successfully!'], 201);
 }
 ```
 
-Laravel **otomatis** mem-parse JSON request body. `$request->validate()` juga langsung mengembalikan error 422 jika validasi gagal — tidak perlu try/catch manual!
+Laravel **automatically** parses the JSON request body. `$request->validate()` also immediately returns a 422 error if validation fails — no manual try/catch needed!
 
-Di Thunder Client, ganti method ke **POST**, tambahkan JSON body seperti `{"nama": "Laskar Pelangi", "peminjam": "Budi"}`, dan klik **Send**. Kamu akan melihat pesan sukses.
+In Thunder Client, change the method to **POST**, add a JSON body like `{"name": "Laskar Pelangi", "borrower": "Budi"}`, and click **Send**. You'll see a success message.
 
 ![POST books](../assets/backend/8.png)
 
-Kirim **GET** ke `/api/books` lagi — kamu akan melihat buku yang baru ditambahkan, lengkap dengan `id` UUID yang digenerate.
+Send a **GET** to `/api/books` again — you'll see the newly added book, complete with its generated UUID `id`.
 
 ![GET books with data](../assets/backend/9.png)
 
 ### PUT `/api/books/{id}`
 
-Route menggunakan `{id}` sebagai segmen dinamis. Di Laravel, parameter ini otomatis tersedia sebagai argumen method controller.
+The route uses `{id}` as a dynamic segment. In Laravel, this parameter is automatically available as a controller method argument.
 
 ```php
 public function update(Request $request, string $id)
@@ -419,50 +419,50 @@ public function update(Request $request, string $id)
     $book = Book::find($id);
 
     if (!$book) {
-        return response()->json(['message' => 'Buku tidak ditemukan'], 404);
+        return response()->json(['message' => 'Book not found'], 404);
     }
 
-    $book->update($request->only(['nama', 'peminjam']));
+    $book->update($request->only(['name', 'borrower']));
 
-    return response()->json(['message' => 'Buku berhasil diupdate'], 200);
+    return response()->json(['message' => 'Book updated successfully'], 200);
 }
 ```
 
-`Book::find($id)` setara dengan `db.books.findUnique({ where: { id } })` di Prisma. `$request->only([...])` memastikan hanya field yang kita inginkan yang diupdate.
+`Book::find($id)` is equivalent to `db.books.findUnique({ where: { id } })` in Prisma. `$request->only([...])` ensures only the fields we want are updated.
 
 ### DELETE `/api/books/{id}`
 
-Sama seperti PUT: ambil buku berdasarkan id, lalu panggil `delete()`. Coba implementasikan sendiri!
+Same as PUT: find the book by id, then call `delete()`. Try implementing this one yourself!
 
 ### Cool-down
 
-Apakah API-mu sudah mengimplementasikan CRUD sepenuhnya? Apakah semua route buku berfungsi, termasuk **Delete**? Di project berikutnya kita akan menambahkan penanganan error yang lebih baik dan route untuk mengambil satu buku berdasarkan id.
+Has your API fully implemented CRUD? Are all book routes working, including **Delete**? In the next project we'll add better error handling and a route to fetch a single book by id.
 
 ---
 
 # Refinement
 
-Selamat datang di project akhir! Tugasmu adalah menyempurnakan API library yang sudah kita buat dengan menyelesaikan langkah-langkah di bawah ini.
+Welcome to the final project! Your task is to refine the library API we've built by completing the steps below.
 
-> Sebelum mengupload project, hapus folder **vendor** dan pastikan `.env` tidak ikut terupload.
+> Before uploading the project, delete the **vendor** folder and make sure `.env` is not included in the upload.
 
-- **#1** Pastikan route **DELETE** sudah berfungsi untuk menghapus buku berdasarkan id.
-- **#2** Tambahkan route **GET** yang mengembalikan satu buku berdasarkan id di method `show()`.
-- **#3** Tambahkan status code ke setiap response. Gunakan:
+- **#1** Make sure the **DELETE** route works to delete a book by id.
+- **#2** Add a **GET** route that returns a single book by id in the `show()` method.
+- **#3** Add a status code to every response. Use:
 
   `return response()->json(['message' => '...'], [status code]);`
 
-  | Status code | Kapan digunakan?                       |
-  | ----------- | -------------------------------------- |
-  | 200         | Sukses mengembalikan data              |
-  | 201         | Sukses membuat data baru               |
-  | 404         | Data tidak ditemukan                   |
-  | 422         | Validasi gagal (otomatis oleh Laravel) |
-  | 500         | Error server                           |
+  | Status code | When to use                                          |
+  | ----------- | ---------------------------------------------------- |
+  | 200         | Successfully returned data                           |
+  | 201         | Successfully created new data                        |
+  | 404         | Data not found                                       |
+  | 422         | Validation failed (handled automatically by Laravel) |
+  | 500         | Server error                                         |
 
-  Untuk daftar lengkap, lihat [HTTP status codes](https://www.hostinger.com/id/tutorial/http-status-code).
+  For the full list, see [HTTP status codes](https://www.hostinger.com/id/tutorial/http-status-code).
 
-- **#4** Buat **Form Request class** terpisah untuk validasi yang lebih rapi:
+- **#4** Create a separate **Form Request class** for cleaner validation:
 
 ```bash
 php artisan make:request StoreBookRequest
@@ -473,37 +473,37 @@ php artisan make:request UpdateBookRequest
 // app/Http/Requests/StoreBookRequest.php
 public function authorize(): bool
 {
-    return true; // Set ke true agar request diizinkan
+    return true; // Set to true to allow the request
 }
 
 public function rules(): array
 {
     return [
-        'nama'     => 'required|string|unique:books',
-        'peminjam' => 'required|string',
+        'name'     => 'required|string|unique:books',
+        'borrower' => 'required|string',
     ];
 }
 ```
 
-Lalu gunakan di Controller:
+Then use it in the Controller:
 
 ```php
 use App\Http\Requests\StoreBookRequest;
 
 public function store(StoreBookRequest $request)
 {
-    // $request sudah tervalidasi otomatis sebelum masuk ke sini!
+    // $request is already validated automatically before reaching here!
     Book::create([
         'id'       => Str::uuid()->toString(),
-        'nama'     => $request->nama,
-        'peminjam' => $request->peminjam,
+        'name'     => $request->name,
+        'borrower' => $request->borrower,
     ]);
 
-    return response()->json(['message' => 'Buku berhasil ditambahkan!'], 201);
+    return response()->json(['message' => 'Book added successfully!'], 201);
 }
 ```
 
-- **#5** Tangani exception dengan **try/catch** untuk error yang tidak terduga:
+- **#5** Handle exceptions with **try/catch** for unexpected errors:
 
 ```php
 public function store(StoreBookRequest $request)
@@ -511,17 +511,17 @@ public function store(StoreBookRequest $request)
     try {
         Book::create([
             'id'       => Str::uuid()->toString(),
-            'nama'     => $request->nama,
-            'peminjam' => $request->peminjam,
+            'name'     => $request->name,
+            'borrower' => $request->borrower,
         ]);
 
-        return response()->json(['message' => 'Buku berhasil ditambahkan!'], 201);
+        return response()->json(['message' => 'Book added successfully!'], 201);
     } catch (\Exception $e) {
         return response()->json(['message' => $e->getMessage()], 500);
     }
 }
 ```
 
-<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=2" arrow="true" cta="Submit di sini">
-  Tambahkan link Github atau project di Google Drive, lalu komunitas akan me-review dan membantu bersama-sama. Pantau terus Discord untuk update terbaru!
+<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=2" arrow="true" cta="Submit here">
+  Add your Github link or project on Google Drive, then the community will review and help together. Keep an eye on Discord for the latest updates!
 </Card>
