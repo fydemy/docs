@@ -2,7 +2,7 @@
 title: "Hello World!"
 ---
 
-Learning frontend is fun and forms the foundation for what we'll learn next, because we work with the UI and design instead of the terminal. Here the material is summarized and straight to the point!
+Learning frontend is often the first step into web development. Instead of working in the terminal, you'll start by building things you can actually see — buttons, text, images, and layouts. Think of frontend as the part of a website that users interact with directly. This section is designed to be simple and straight to the point, but don't worry if some parts feel confusing at first — that's completely normal.
 
 ## Prerequisites
 
@@ -24,6 +24,12 @@ Click the add-file icon in the sidebar, then type `index.html`. Press Enter to c
 - **HTML (Hypertext Markup Language)** `*.html` — the skeleton for elements like headings, text, images, links, buttons, and so on
 - **CSS (Cascading Style Sheets)** `*.css` — styling for HTML elements (font-size, color, font, margin, padding, etc.)
 - **JavaScript** `*.js` — logic to make the site more interactive, dynamic, and to add functionality
+
+For example:
+
+- HTML creates a button (what exists on the page)
+- CSS makes it look nice (what exists on the page)
+- JavaScript makes it clickable (how it reacts)
 
 ![New file](../assets/frontend/2.png)
 
@@ -87,7 +93,10 @@ Attributes are configuration or options you can add to elements (tags). For exam
 </html>
 ```
 
-This is the required boilerplate to get started. In VSCode you can generate it with the shortcut `! + Tab` (or Enter). This structure includes the page title, metadata, and a **body** where you write the content.
+This is the basic structure required for every HTML page. You don't need to memorize it all at once — most developers rely on shortcuts like `! + Tab` in VSCode to generate it automatically. What matters is understanding that:
+
+- `<head>` contains information about the page
+- `<body>` contains what users will actually see
 
 ## CSS
 
@@ -102,6 +111,8 @@ Easiest, but not recommended—it clutters your HTML when styles get complex and
 ```
 
 **2. External CSS (recommended)**
+
+As your project grows, separating CSS into its own file becomes important. It helps keep your code clean and easier to manage. That's why external CSS is the most commonly used approach in real-world projects.
 
 Create a **new CSS file** the same way you created the HTML file—for example name it `style.css`. Then link it from your HTML; make sure the `href` matches your file name.
 
@@ -372,6 +383,8 @@ title.addEventListener("click", function () {
   alert("Welcome!");
 });
 ```
+
+The DOM can feel confusing at first, but you can think of it as a bridge between your HTML and JavaScript. It allows JavaScript to “see” and “control” elements on your page.
 
 ## Ready?
 
