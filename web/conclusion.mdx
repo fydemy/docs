@@ -1,450 +1,167 @@
 ---
-title: "Conculusion"
+title: 'conclusion'
 ---
 
 ## Overview
 
-This is the conclusion and the latest updates of vibe coding technologies. Enjoy!
+Every website you see has **3 different aspects**:
 
-The website pages that you have seen actually have **3 different aspects**:
-
-- **Skeleton (HTML):** Imagine blocks when you are writing on Notion
-- **Skin (CSS):** Styling
-- **Brain (JavaScript):** Logics
+- **Skeleton (Blade/HTML):** Like blocks when writing in Notion
+- **Skin (CSS):** Visual styling
+- **Brain (PHP/Laravel):** Logic and backend
 
 ---
 
-# HTML
+# PHP
 
-**Hyper Text Markup Language (HTML)** is a file to define your website blocks and metadata.  
-This is a **required and main file** that has to exist in order to create a website.
+**PHP (Hypertext Preprocessor)** is a server-side programming language used to build dynamic websites.
+It is the **primary language** you should learn before moving on to Laravel.
 
 ---
 
-## How to Start
+## Getting Started
 
-Create a file called: `index.html`. Then press: `! + Tab` inside your code editor.
+Install **XAMPP** or **Laragon** for your local environment. Create a file named: `index.php`.
 
 Recommended editors:
 
 - Visual Studio Code
 - Cursor
-- AntiGravity
+- PhpStorm
 
-This generates the base HTML template.
+Basic PHP example:
+
+```php
+<?php
+echo "Hello World";
+
+$name = "John";
+echo "Hello, " . $name;
+```
+
+---
+
+## Data Types & Variables
+
+PHP is a _loosely typed_ language. Variables are prefixed with a `$` sign:
+
+```php
+$name   = "John";                    // String
+$age    = 25;                        // Integer
+$height = 1.75;                      // Float
+$active = true;                      // Boolean
+$hobbies = ["coding", "reading"];    // Array
+```
+
+---
+
+# Laravel
+
+**Laravel** is the most popular PHP framework today. Laravel simplifies the web development process by providing a comprehensive set of built-in tools.
+
+Official documentation: https://laravel.com/docs
+
+---
+
+## Getting Started
+
+First, install **Composer** (PHP's package manager):
+
+```bash
+# Install Laravel via Composer
+composer create-project laravel/laravel my-project
+
+# Navigate into the project folder
+cd my-project
+
+# Start the development server
+php artisan serve
+```
+
+---
+
+## Folder Structure
+
+```
+app/
+  Models/
+  Http/
+    Controllers/
+resources/
+  views/        ← Blade templates (like React components)
+database/
+  migrations/
+routes/
+  web.php       ← Main routing
+  api.php       ← API routes
+```
+
+---
+
+# Blade Templates (HTML Replacement)
+
+**Blade** is Laravel's built-in template engine — but for PHP.
+Blade files use the `.blade.php` extension:
 
 ```html
+<!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{{ $title }}</title>
   </head>
-  <body></body>
+  <body>
+    <h1>{{ $title }}</h1>
+    <p>Hello, {{ $name }}!</p>
+  </body>
 </html>
 ```
 
 ---
 
-## Tags
+## Blade Components (React Components Replacement)
 
-Notice the pattern:
-
-```
-<...> ... </...>
-```
-
-This is called a **tag**.
-
-Some tags are **paired**, while others are **void** (self-closing).
-
-Examples:
-
-```
-<tag></tag>
-```
-
-or
-
-```
-<tag />
-```
-
----
-
-## Head vs Body
-
-### Head Tag
-
-Inside `<head>` you usually place **metadata** such as:
-
-- Title
-- Description
-- OpenGraph tags
-- SEO information
-
-These help when sharing your website or appearing in search engines.
-
----
-
-### Body Tag
-
-Inside `<body>` is where the **content of your website** goes.
-
-Examples:
+Just like React Components, Blade also has reusable components:
 
 ```html
-<h1>Hello World</h1>
-<p>This is a paragraph <span>!</span></p>
-<button>Click me</button>
+<!-- resources/views/components/button.blade.php -->
+<button {{ $attributes->merge(['class' => 'btn btn-primary']) }}> {{ $slot }}</button>
+
+<!-- How to use it in another view -->
+<x-button class="btn-lg"> Login </x-button>
 ```
-
-Documentation reference:
-
-https://www.w3schools.com/tags/tag_comment.asp
 
 ---
 
-## Attributes
-
-Tags can contain **attributes**.
-
-Example:
+## Logic in Blade
 
 ```html
-<img src="./image.png" alt="Image" />
-<a href="https://www.google.com">Google</a>
-```
-
-Attributes:
-
-- `src`
-- `href`
-- `alt`
-
-Each element may have **different supported attributes**.
-
----
-
-# CSS
-
-**Cascading Style Sheets (CSS)** is used to style your HTML elements. CSS **cannot run alone**. It must be connected to an HTML file.
-
----
-
-## Linking CSS
-
-Add this inside your `<head>`:
-
-```html
-<title>Document</title>
-<link rel="stylesheet" href="./style.css" />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-  rel="stylesheet"
-/>
-```
-
-You also need to create: `style.css`
-
----
-
-## Custom Fonts
-
-You can get fonts from: https://fonts.google.com. Search a font and copy the **link tag** into the `<head>`.
-
----
-
-## Base Styling Template
-
-Common CSS reset:
-
-```css
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-```
-
-Explanation:
-
-- Reset browser default spacing
-- Prevent elements exceeding dimensions
-
----
-
-# CSS Selectors
-
-Selectors target HTML elements.
-
-Types:
-
-- Tag selector
-- Class selector
-- ID selector
-
-Example HTML:
-
-```html
-<h1 class="title" id="title">Hello World</h1>
-```
-
-Example CSS:
-
-```css
-h1 {
-  color: red;
-  font-size: 24px;
-}
-
-.title,
-#title,
-h1.title {
-  color: blue;
-}
-
-body p {
-  font-weight: bold;
-}
-```
-
-Notes:
-
-- `.` → class selector
-- `#` → id selector
-
----
-
-# Magic Element: Div
-
-`div` is a container element used to group elements.
-
-Example:
-
-```html
+{{-- Conditionals --}} @if ($user->isAdmin())
+<p>Welcome, Admin!</p>
+@else
+<p>Welcome, {{ $user->name }}</p>
+@endif {{-- Looping --}} @foreach ($posts as $post)
 <div>
-  <h1>Title</h1>
-  <p>Description</p>
+  <h2>{{ $post->title }}</h2>
+  <p>{{ $post->content }}</p>
 </div>
-```
-
-Commonly used as:
-
-- wrapper
-- container
-- layout block
-
----
-
-# Layout Styling Template
-
-### Flexbox
-
-Used for **horizontal or vertical layouts**
-
-```css
-display: flex;
-gap: 16px;
-flex-direction: row;
-```
-
-Options:
-
-- row
-- column
-
----
-
-### Grid
-
-Used for **card-based layouts**.
-
-Example:
-
-```css
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 16px;
-```
-
-Example use case:
-
-- Google Classroom style cards
-
----
-
-# JavaScript
-
-HTML and CSS **are not programming languages**. They do not contain logic. JavaScript adds **logic and interactivity**.
-
----
-
-## Linking JavaScript
-
-Create: `script.js`. Add before closing `body`:
-
-```html
-<script src="./script.js"></script>
+@endforeach
 ```
 
 ---
 
-# DOM Manipulation
+# CSS in Laravel
 
-JavaScript can select HTML elements and manipulate them.
+CSS in Laravel works exactly the same. You can use **TailwindCSS**, which is available by default in Laravel 11+.
 
-Example:
+TailwindCSS documentation: https://tailwindcss.com
 
-```javascript
-const title = document.querySelector(".title");
-
-title.addEventListener("click", () => {
-  title.style.color = "purple";
-});
-```
-
-Explanation:
-
-- Select element
-- Add click event
-- Change style dynamically
+Install the **TailwindCSS IntelliSense** extension for autocomplete.
 
 ---
 
-# React
-
-React is one of the **most used JavaScript frameworks today**.
-
-It helps create:
-
-- Complex applications
-- Multiple pages
-- Reusable UI components
-- Dynamic rendering
-
-Popular frameworks using React: Next.js
-
-Documentation: https://react.dev
-
----
-
-# Getting Started
-
-After creating a React project:
-
-Install dependencies:
-
-```
-npm i
-```
-
-Files structure:
-
-```
-src/
-  App.jsx
-  main.jsx
-```
-
-Run project:
-
-```
-npm run dev
-```
-
----
-
-# Components
-
-Components make UI reusable.
-
-Example:
-
-```jsx
-function MyButton({ title }) {
-  return <button>I'm a {title} button</button>;
-}
-
-export default function MyApp() {
-  return (
-    <div>
-      <h1>Welcome to my app</h1>
-      <MyButton title="login" />
-    </div>
-  );
-}
-```
-
----
-
-# React Hooks
-
-Hooks are built-in React functions.
-
-Docs: https://react.dev/reference/react/hooks
-
----
-
-## useEffect
-
-Runs side effects based on dependencies.
-
-Example:
-
-```jsx
-useEffect(() => {
-  const connection = createConnection(serverUrl, roomId);
-  connection.connect();
-
-  return () => {
-    connection.disconnect();
-  };
-}, [serverUrl, roomId]);
-```
-
-If dependencies change, the effect reruns.
-
----
-
-## useState
-
-Used to manage component state.
-
-Example:
-
-```jsx
-const [age, setAge] = useState(28);
-```
-
-Update state:
-
-```jsx
-setAge(30);
-
-setAge((prev) => prev + 1);
-```
-
-`prev` represents the current value.
-
----
-
-# TailwindCSS
-
-TailwindCSS allows styling **without writing CSS files**.
-
-Docs: https://tailwindcss.com
-
-Install **TailwindCSS IntelliSense** extension for autocomplete.
-
----
-
-## Basic Syntax
+## TailwindCSS (Same as React)
 
 ### Colors
 
@@ -453,11 +170,11 @@ bg-red-200
 text-blue-900
 ```
 
-Higher number → stronger color.
+Higher numbers → stronger/darker colors.
 
 ---
 
-### Size
+### Sizing
 
 ```
 text-lg
@@ -492,242 +209,389 @@ mx-auto
 
 ---
 
-# shadcn/ui
-
-A component library that allows installing only the components you need.
-
-Docs: https://ui.shadcn.com
-
-AI builders usually use **shadcn components** instead of building UI from scratch.
-
----
-
-# Next.js
-
-Next.js is a **fullstack framework** built on React.
-
-Docs: https://nextjs.org
-
-Unlike React, Next.js includes:
-
-- Backend
-- Frontend
-- Routing
-- API
-
-Used by tools like:
-
-- Lovable
-- Orchids
-
----
-
-# Rendering Methods
-
-## Server Side Rendering (SSR)
-
-Rendered on the server before reaching the browser.
-
-Use cases:
-
-- Metadata
-- Protected pages
-- Authentication validation
-
-Too much SSR can slow apps.
-
----
-
-## Client Side Rendering (CSR)
-
-Rendered in the browser.
-
-Example:
-
-- Skeleton loading
-- Fetching data after page load
-
----
-
-# Middleware
-
-You can protect routes using middleware.
-
-Example file:
-
-```
-src/proxy.js
-```
-
-Used for:
-
-- Authentication
-- Session validation
-- Access control
-
----
-
 # Routing
 
-### React
+In Laravel, routing is defined in the `routes/web.php` file:
 
-Requires:
+```php
+// routes/web.php
+Route::get('/', function () {
+    return view('welcome');
+});
 
-https://reactrouter.com/
-
----
-
-### Next.js
-
-Uses **file-based routing**.
-
-Example:
-
-Create page:
-
-```
-src/user/page.tsx
-```
-
-URL:
-
-```
-/user
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'show']);
+Route::post('/user', [UserController::class, 'store']);
+Route::put('/user/{id}', [UserController::class, 'update']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);
 ```
 
 ---
 
 ## Dynamic Routes
 
-Folder:
+```php
+// Define route with a parameter
+Route::get('/user/{id}', [UserController::class, 'show']);
 
-```
-src/user/[id]
-```
-
-Example route:
-
-```
-/user/123
-```
-
-Access parameter:
-
-```jsx
-useParams();
+// Inside the Controller
+public function show($id)
+{
+    $user = User::findOrFail($id);
+    return view('users.show', compact('user'));
+}
 ```
 
 ---
 
-# API Routes
+# Controllers
 
-Create API folder:
+Controllers in Laravel:
 
+```php
+// app/Http/Controllers/UserController.php
+<?php
+namespace App\Http\Controllers;
+
+use App\Models\User;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.show', compact('user'));
+    }
+}
 ```
-src/api
+
+Create a new Controller with Artisan:
+
+```bash
+php artisan make:controller UserController
 ```
 
-Standard naming:
+---
 
-```
-route.ts
+# Eloquent ORM
+
+**Eloquent** is Laravel's built-in ORM:
+
+```php
+// app/Models/User.php
+<?php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    protected $fillable = ['name', 'email', 'password'];
+
+    // Relationship: User has many Posts
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
 ```
 
-For UI pages:
+---
 
+## Querying with Eloquent
+
+```php
+// Retrieve all records
+$users = User::all();
+
+// Find by ID
+$user = User::find(1);
+
+// Filter
+$admins = User::where('role', 'admin')->get();
+
+// Create a new record
+User::create(['name' => 'John', 'email' => 'john@email.com']);
+
+// Update
+$user->update(['name' => 'Jane']);
+
+// Delete
+$user->delete();
 ```
-page.tsx
+
+---
+
+# Migrations (Database Schema)
+
+Migrations in Laravel replace **Prisma Schema**. They are used to create and modify database table structures:
+
+```bash
+# Create a new migration
+php artisan make:migration create_posts_table
+
+# Run migrations
+php artisan migrate
+
+# Rollback
+php artisan migrate:rollback
+```
+
+```php
+// database/migrations/xxxx_create_posts_table.php
+public function up(): void
+{
+    Schema::create('posts', function (Blueprint $table) {
+        $table->id();
+        $table->string('title');
+        $table->text('content');
+        $table->foreignId('user_id')->constrained();
+        $table->timestamps();
+    });
+}
+```
+
+---
+
+# Authentication
+
+Laravel provides **Breeze** or **Jetstream** as authentication starter kits, replacing Better Auth:
+
+```bash
+# Install Laravel Breeze (simple)
+composer require laravel/breeze --dev
+php artisan breeze:install
+
+# Or Jetstream (full-featured with teams)
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+```
+
+Features available after installation:
+
+- Login with email/password
+- New account registration
+- Forgot password / password reset
+- Social login via Laravel Socialite (Google, GitHub, etc.)
+
+---
+
+# Middleware (Route Protection)
+
+Middleware in Laravel works the same as middleware in Next.js — it protects routes:
+
+```php
+// Protect a route with the auth middleware
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+
+// Group of protected routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show']);
+    Route::get('/settings', [SettingController::class, 'index']);
+});
+```
+
+---
+
+# API with Laravel
+
+Laravel can be used as a pure API backend. Use `routes/api.php` to define endpoints:
+
+```php
+// routes/api.php
+Route::apiResource('users', UserController::class);
+
+// Automatically generates the following routes:
+// GET    /api/users          → index()
+// POST   /api/users          → store()
+// GET    /api/users/{id}     → show()
+// PUT    /api/users/{id}     → update()
+// DELETE /api/users/{id}     → destroy()
+```
+
+---
+
+# Rendering in Laravel
+
+## Server Side Rendering (Laravel Default)
+
+Laravel uses SSR by default. The Controller fetches data and sends it to a Blade view:
+
+```php
+public function index()
+{
+    $posts = Post::with('user')->latest()->get();
+    return view('posts.index', compact('posts')); // Data is passed to Blade
+}
+```
+
+---
+
+## Livewire (useState & CSR Replacement)
+
+**Livewire** is a tool for adding interactivity without writing JavaScript:
+
+```bash
+php artisan make:livewire Counter
+```
+
+```php
+// app/Livewire/Counter.php
+class Counter extends Component
+{
+    public int $count = 0;
+
+    public function increment()
+    {
+        $this->count++;
+    }
+
+    public function render()
+    {
+        return view('livewire.counter');
+    }
+}
+```
+
+```html
+<!-- resources/views/livewire/counter.blade.php -->
+<div>
+  <h1>{{ $count }}</h1>
+  <button wire:click="increment">Increment</button>
+</div>
 ```
 
 ---
 
 # Infrastructure
 
-## Vercel
+## Laravel Forge / Ploi
 
-https://vercel.com
+https://forge.laravel.com | https://ploi.io
 
-Next.js is built by Vercel.
+Replaces **Vercel** for deploying Laravel applications. Key features:
 
-Features:
-
-- GitHub integration
-- Automatic deployments
-- CI/CD
-
----
-
-## Supabase
-
-All-in-one backend platform.
-
-https://supabase.com
-
-Includes:
-
-- Database
-- Authentication
-- File storage
+- Automatic server provisioning
+- GitHub integration & auto-deploy
+- Automatic SSL
+- Database management
 
 ---
 
-## OpenRouter
+## Database
+
+Laravel supports multiple databases:
+
+- **MySQL / PostgreSQL** — most common in production
+- **Supabase** — PostgreSQL cloud, same as in Next.js
+- **SQLite** — for local development
+
+---
+
+## OpenRouter (Same)
 
 AI API platform with free credits.
 
 https://openrouter.ai
 
-Allows integration with multiple AI models.
+Can be integrated with Laravel using the built-in HTTP Client:
+
+```php
+$response = Http::withHeaders([
+    'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+])->post('https://openrouter.ai/api/v1/chat/completions', [
+    'model' => 'openai/gpt-4o',
+    'messages' => [['role' => 'user', 'content' => 'Hello!']],
+]);
+```
 
 ---
 
 # Libraries
 
-## Prisma
+## Eloquent (Built-in ORM)
 
-https://www.prisma.io
-
-ORM used for database communication.
-
-Benefits:
-
-- Safer queries
-- Prevent SQL injection
-- Easy database manipulation
+Already included in Laravel. No need for a separate install like Prisma.
 
 ---
 
-## Better Auth
+## Laravel Socialite (OAuth)
 
-https://www.better-auth.com
+https://laravel.com/docs/socialite
 
-Authentication library supporting:
+Replaces Better Auth for social login:
 
-- Email/password
-- Google login
-- OAuth
+- Google
+- GitHub
+- Facebook
+- Twitter/X
+
+```bash
+composer require laravel/socialite
+```
 
 ---
 
-## tRPC
+## Spatie Permission
 
-https://trpc.io
+https://spatie.be/docs/laravel-permission
 
-Allows easy creation of API endpoints and server logic.
+A popular library for roles & permissions in Laravel.
+
+```bash
+composer require spatie/laravel-permission
+```
+
+---
+
+# Comparison Table
+
+| Concept          | JavaScript / Next.js | Laravel / PHP                 |
+| ---------------- | -------------------- | ----------------------------- |
+| Template Engine  | JSX / `.tsx`         | Blade (`.blade.php`)          |
+| UI Components    | React Components     | Blade Components (`x-button`) |
+| State Management | `useState`           | Livewire                      |
+| Side Effects     | `useEffect`          | Events / Observers            |
+| Styling          | TailwindCSS          | TailwindCSS (same)            |
+| Database ORM     | Prisma               | Eloquent (built-in)           |
+| Routing          | File-based (Next.js) | `routes/web.php`              |
+| API Routes       | `app/api/route.ts`   | `routes/api.php`              |
+| Authentication   | Better Auth          | Laravel Breeze / Jetstream    |
+| Middleware       | `middleware.ts`      | PHP Middleware class          |
+| Deployment       | Vercel               | Laravel Forge / Ploi          |
+| Database BaaS    | Supabase             | Supabase / PlanetScale        |
+| Package Manager  | npm / yarn           | Composer                      |
+| Dev Server       | `npm run dev`        | `php artisan serve`           |
+| Social Login     | Better Auth (OAuth)  | Laravel Socialite             |
 
 ---
 
 # Bonus
 
-Starter kit with:
+Laravel starter kit with a complete setup:
 
-- Prisma
-- Better Auth
-- tRPC
+- Eloquent (built-in)
+- Laravel Breeze (auth)
+- Livewire (interactivity)
+- TailwindCSS (styling)
 
-Repository:
-
-https://github.com/fydemy/next-starter
+```bash
+composer create-project laravel/laravel my-project
+cd my-project
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+php artisan serve
+```
 
 ---
 
@@ -737,4 +601,4 @@ Questions and contributions:
 
 https://fydemy.com
 
-Join the **Fydemy Discord** to participate in discussions.
+Join the **Fydemy Discord** to discuss and share your Laravel learning journey!
