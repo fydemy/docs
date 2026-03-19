@@ -1,5 +1,5 @@
 ---
-title: "The Kitchen"
+title: 'The Kitchen'
 ---
 
 After learning basic frontend with HTML, CSS, and JavaScript, have you ever wondered how sites like Tokopedia, Instagram, TikTok, and others work? It’s a lot, right? Can we do it with just frontend? We could, but it would stay static—we wouldn’t see updated stories, other people’s posts, and so on.
@@ -26,11 +26,11 @@ Where do you think sites like Instagram store user data and posts? In Excel, Wor
 - Download [XAMPP](https://www.apachefriends.org/). Run the installer and accept the default settings.
 - After installation, open the app and click **Start** for **Apache** and **MySQL**.
 
-![XAMPP Apache and MySQL](../assets/backend/3.png)
+![XAMPP Apache and MySQL](../assets/backend/backend_js/3.png)
 
 - Open `localhost/phpmyadmin` in your browser. Create a new database by clicking **New** in the sidebar, entering a name, then clicking **Create**.
 
-![phpMyAdmin new database](../assets/backend/4.jpg)
+![phpMyAdmin new database](../assets/backend/backend_js/4.jpg)
 
 ### API routing
 
@@ -126,8 +126,8 @@ module.exports = age;
 **[Import]** — After installing express (or any package) or when you have a file that exports with `module.exports`, you can import like this:
 
 ```javascript
-const express = require("express");
-const age = require("namafile");
+const express = require('express');
+const age = require('namafile');
 ```
 
 ### Running the program
@@ -187,7 +187,7 @@ DB_PASSWORD=admin_123
 **index.js**
 
 ```javascript
-const dotenv = require("dotenv");
+const dotenv = require('dotenv');
 dotenv.config();
 
 console.log(process.env.DB_PASSWORD);
@@ -207,7 +207,7 @@ There's an old-fashioned library that could use an update. You have an idea: bui
 
 This continues from the **syntax** module. Make sure you've already set things up: nodemon, Prisma, Express, dotenv. Here's the workflow structure for our API:
 
-![API workflow](../assets/backend/1.png)
+![API workflow](../assets/backend/backend_js/1.png)
 
 ## Ready?
 
@@ -233,14 +233,14 @@ APP_PORT=3000
 **index.js**
 
 ```javascript
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
 
 app.listen(process.env.APP_PORT, () => {
-  console.log("Server is running...");
+  console.log('Server is running...');
 });
 ```
 
@@ -261,8 +261,8 @@ Then open your browser and go to `localhost:3000`. Nothing shows yet because we 
 Add a route:
 
 ```javascript
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 ```
 
@@ -278,11 +278,11 @@ npx prisma init
 
 New folders and files appear, and `.env` is updated (that's normal—it's Prisma's initial setup). For a better experience, install the **Prisma** extension in VS Code for syntax highlighting and autocomplete in `.prisma` files.
 
-![Prisma init](../assets/backend/2.png)
+![Prisma init](../assets/backend/backend_js/2.png)
 
 Next we define our **schema**—the structure of the database. Prisma has its own syntax; see the [Prisma docs](https://www.prisma.io/) for full reference. You should now see syntax highlighting and autocomplete!
 
-![Prisma schema](../assets/backend/5.png)
+![Prisma schema](../assets/backend/backend_js/5.png)
 
 **schema.prisma**
 
@@ -339,13 +339,13 @@ npx prisma db push   # migrate schema from schema.prisma to the database
 npx prisma generate  # generate Prisma Client (autocomplete, types)
 ```
 
-![Prisma migrate](../assets/backend/8.png)
+![Prisma migrate](../assets/backend/backend_js/8.png)
 
 ## Let's build the API
 
 APIs often expose **CRUD** (Create, Read, Update, Delete) via different routes. For example:
 
-![CRUD routes](../assets/backend/6.png)
+![CRUD routes](../assets/backend/backend_js/6.png)
 
 - **GET** `http://localhost:3000/books` — list all books
 - **POST** `http://localhost:3000/books` — add a book
@@ -356,17 +356,17 @@ APIs often expose **CRUD** (Create, Read, Update, Delete) via different routes. 
 
 Use a lightweight VS Code extension like **Thunder Client** to test your API.
 
-![Thunder Client](../assets/backend/7.png)
+![Thunder Client](../assets/backend/backend_js/7.png)
 
 ### GET `/books`
 
 We'll keep everything in `index.js`.
 
 ```javascript
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require('@prisma/client');
 const db = new PrismaClient();
 
-app.get("/books", async (req, res) => {
+app.get('/books', async (req, res) => {
   const data = await db.books.findMany();
   res.json(data);
 });
@@ -375,16 +375,16 @@ app.get("/books", async (req, res) => {
 For the latest Prisma version, you may need to import from the generated client:
 
 ```javascript
-const { PrismaClient } = require("./generated/prisma");
+const { PrismaClient } = require('./generated/prisma');
 ```
 
 After running `npx prisma generate`, you get autocomplete when using `@prisma/client`, matching the schema you defined.
 
-![Prisma autocomplete](../assets/backend/9.png)
+![Prisma autocomplete](../assets/backend/backend_js/9.png)
 
 Open **Thunder Client**, send a GET request to `http://localhost:3000/books`, and click **Send**. The response is `[]` because no books have been added yet.
 
-![GET books empty](../assets/backend/10.png)
+![GET books empty](../assets/backend/backend_js/10.png)
 
 ### POST `/books`
 
@@ -399,22 +399,22 @@ app.use(express.json());
 Then:
 
 ```javascript
-app.post("/books", async (req, res) => {
+app.post('/books', async (req, res) => {
   const { nama, peminjam } = req.body;
   await db.books.create({
     data: { nama, peminjam },
   });
-  res.json({ message: "Book added successfully!" });
+  res.json({ message: 'Book added successfully!' });
 });
 ```
 
 In Thunder Client, switch the method to **POST**, add a JSON body (e.g. `{"nama": "Book Title", "peminjam": "John"}`), and click **Send**. You should see the success message.
 
-![POST books](../assets/backend/11.png)
+![POST books](../assets/backend/backend_js/11.png)
 
 Send a **GET** to `/books` again—you'll see the books you added, with `id` values generated by `uuid()` from the schema.
 
-![GET books with data](../assets/backend/12.png)
+![GET books with data](../assets/backend/backend_js/12.png)
 
 ### PUT `/books/:id`
 
@@ -427,14 +427,14 @@ const { id } = req.params;
 In the database query we use **where** so only the book with that `id` is updated:
 
 ```javascript
-app.put("/books/:id", async (req, res) => {
+app.put('/books/:id', async (req, res) => {
   const { id } = req.params;
   const { nama, peminjam } = req.body;
   await db.books.update({
     where: { id },
     data: { nama, peminjam },
   });
-  res.json({ message: "Book updated successfully" });
+  res.json({ message: 'Book updated successfully' });
 });
 ```
 
@@ -472,13 +472,13 @@ Welcome to the final project! Your task is to refine the library API we built by
 - **#4** Wrap each route in a **try/catch** block for error handling:
 
 ```javascript
-app.post("/books", async (req, res) => {
+app.post('/books', async (req, res) => {
   const { nama, peminjam } = req.body;
   try {
     await db.books.create({
       data: { nama, peminjam },
     });
-    res.json({ message: "Book added successfully!" });
+    res.json({ message: 'Book added successfully!' });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: err.message });
@@ -486,13 +486,6 @@ app.post("/books", async (req, res) => {
 });
 ```
 
-<Card
-  title="Submit"
-  icon="upload"
-  href="https://app.fysite.id/submit?course_id=1&subcourse_id=2"
-  arrow="true"
-  cta="Submit here"
->
-  Add your Github link or project in Google Drive then the community will review
-  and help you together. Please stay tuned on Discord to see the latest updates!
+<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=2" arrow="true" cta="Submit here">
+  Add your Github link or project in Google Drive then the community will review and help you together. Please stay tuned on Discord to see the latest updates!
 </Card>

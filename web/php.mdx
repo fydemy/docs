@@ -1,0 +1,462 @@
+---
+title: 'Hello World'
+---
+
+Learning backend development with PHP is one of the best ways to understand how websites work behind the scenes. Unlike frontend which is visible directly in the browser, PHP runs on the **server** and generates HTML that gets sent to the user. This section is designed to be simple and straight to the point — don't worry if some parts feel confusing at first, that's completely normal.
+
+## Prerequisites
+
+- Download an IDE from this link: [VSCode](https://code.visualstudio.com/download)
+- Install PHP and a local web server. You have two options:
+  - **XAMPP** — [Download here](https://www.apachefriends.org/download.html). Includes Apache + PHP + MySQL. After installing, open the XAMPP Control Panel and start **Apache**.
+  - **Laragon** — [Download here](https://laragon.org/download/). A lightweight and modern alternative, recommended for Windows users. Just install and click **Start All**.
+
+## Let's get started
+
+### Open a project
+
+All PHP files must be placed inside the correct web server folder so they can be run in the browser.
+
+**XAMPP**
+
+- Windows: `C:\xampp\htdocs\`
+- Mac/Linux: `/Applications/XAMPP/htdocs/`
+
+**Laragon**
+
+- Windows: `C:\laragon\www\`
+
+Create a new folder there — for example name it `learn-php`. Then open that folder in VSCode via **File > Open Folder**.
+
+### Create a new file
+
+Click the add-file icon in the sidebar, then type `index.php`. Press Enter to create it. The file structure of a PHP project generally looks like:
+
+- **PHP** `*.php` — server logic, fetching data, processing forms, generating HTML
+- **HTML** `*.html` or inside `*.php` — the content users see on the page
+- **CSS** `*.css` — styling for HTML elements
+
+For example:
+
+- PHP fetches data from a database (who is logged in, what products are available)
+- HTML displays that data on the page
+- CSS makes it look clean and organized
+
+### Run the project
+
+Open your browser and go to:
+
+**XAMPP**
+
+```
+http://localhost/learn-php/
+```
+
+**Laragon**
+
+```
+http://learn-php.test/
+```
+
+The browser will automatically load `index.php`.
+
+---
+
+## PHP
+
+### Comments
+
+```php
+// This is a single-line comment
+
+# This is also a single-line comment
+
+/*
+  This is a
+  multi-line comment
+*/
+```
+
+Anything inside a comment is not executed by the program — it's only for notes so you (or others) can understand the code.
+
+### PHP Tags
+
+PHP code is always written between an opening and closing tag:
+
+```php
+<?php
+  // Write your PHP code here
+?>
+```
+
+You can mix PHP and HTML inside a single `.php` file:
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My First Page</title>
+  </head>
+  <body>
+    <h1><?php echo "Hello, World!"; ?></h1>
+  </body>
+</html>
+```
+
+`echo` is used to output content to the page.
+
+### PHP file structure
+
+```php
+<?php
+  // PHP logic at the top (optional)
+  $name = "Budi";
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Personal Portfolio</title>
+    <!-- Page title shown in the browser tab -->
+  </head>
+  <body>
+    <!-- Display a PHP variable inside HTML -->
+    <h1>Hello, <?php echo $name; ?>!</h1>
+  </body>
+</html>
+```
+
+---
+
+## CSS
+
+Just like in plain HTML, you can use CSS to style your page. There are **3 ways** to do it (the 2nd is recommended):
+
+**1. Inline CSS (attribute)**
+
+Easiest, but not recommended — it clutters your HTML when styles get complex.
+
+```html
+<h1 style="text-align: center">Welcome!</h1>
+```
+
+**2. External CSS (recommended)**
+
+Create a new `style.css` file and link it from your PHP file. This is the best approach as your project grows.
+
+**index.php**
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Link the CSS file -->
+  </head>
+  <body>
+    <h1 class="header">Hello!</h1>
+    <!-- Use the class name in the class attribute -->
+  </body>
+</html>
+```
+
+**style.css**
+
+```css
+.header {
+  text-align: center;
+}
+```
+
+**3. Internal CSS**
+
+Write CSS inside a `<style>` tag in the `<head>`. Not recommended for larger projects.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      .header {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="header">Hello!</h1>
+  </body>
+</html>
+```
+
+---
+
+# Systematic thinking
+
+How can human logic be expressed in code? PHP can do it! Let's get familiar with the fundamentals.
+
+## PHP Programming Concepts
+
+### Variables
+
+Variables in PHP always start with a **`$`** sign.
+
+```php
+<?php
+  $name    = "Budi";  // String
+  $age     = 20;      // Integer
+  $height  = 170.5;   // Float
+  $married = false;   // Boolean
+?>
+```
+
+**Naming rules:**
+
+- Always start with `$`
+- No spaces — Wrong: `$full name`
+- Use camel case — Correct: `$fullName`
+- Or snake case — Correct: `$full_name`
+
+### Data Types
+
+**String** — text, wrapped in quotes.
+
+```php
+$text = "Welcome";
+```
+
+**Integer** — whole numbers.
+
+```php
+$year = 2025;
+```
+
+**Float** — decimal numbers.
+
+```php
+$score = 98.5;
+```
+
+**Boolean** — only `true` or `false`.
+
+```php
+$isLoggedIn = false;
+```
+
+**Array** — holds multiple values in one variable.
+
+```php
+$items = ["joko", 19, true];
+
+// Associative array (key-value pairs)
+$user = [
+  "username" => "john doe",
+  "age"      => 12,
+  "married"  => false,
+];
+```
+
+### Conditionals
+
+**if / elseif / else**
+
+```php
+<?php
+  $isMarried = false;
+  $age = 28;
+
+  if ($isMarried) {
+    echo "Congratulations!";
+  } elseif (!$isMarried && $age > 30) {
+    echo "Hope you find someone soon";
+  } else {
+    echo "Hang in there!";
+  }
+?>
+```
+
+**Logical operators**
+
+Say we have `$atSchool = false` and `$age = 3`:
+
+- `!$atSchool` — **!** is negation (the opposite). So this is **true**.
+- `$atSchool && $age > 1` — **&&** means "and". Both must be true for the whole expression to be true; if either is false, the result is **false**.
+- `$atSchool || $age > 1` — **||** means "or". If at least one is true, the result is **true**.
+
+### Functions
+
+Functions in PHP use the `function` keyword. They can accept parameters and return a value with `return`.
+
+**Built-in functions**
+
+PHP has many built-in functions ready to use:
+
+```php
+<?php
+  $name = "  Budi  ";
+  echo strlen($name);       // String length: 8
+  echo strtoupper($name);   // Convert to uppercase: BUDI
+  echo trim($name);         // Remove surrounding whitespace: Budi
+?>
+```
+
+**User-defined functions**
+
+```php
+<?php
+  function add($a, $b) {
+    return $a + $b;
+  }
+
+  echo add(3, 5); // Output: 8
+?>
+```
+
+---
+
+## Form & Interaction
+
+One of PHP's core strengths is processing **HTML forms**. The form is submitted to the server and PHP handles it directly — no extra code needed on the browser side.
+
+### Sending data with a form
+
+**index.php**
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PHP Form</title>
+  </head>
+  <body>
+    <form action="process.php" method="POST">
+      <input type="text" name="name" placeholder="Your name" />
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>
+```
+
+**process.php**
+
+```php
+<?php
+  $name = $_POST["name"]; // Get data from the form
+  echo "Hello, " . $name . "!";
+?>
+```
+
+- `$_POST` — retrieves data from a form submitted with the `POST` method
+- `$_GET` — retrieves data from the URL (query string)
+- `.` — the concatenation operator, used to join strings together
+
+---
+
+## Dynamic Output
+
+PHP **generates HTML** on the server before sending it to the browser. This means the page content can change based on data — all without any extra code on the browser side.
+
+### Loop to display data
+
+```php
+<?php
+  $fruits = ["Apple", "Mango", "Orange"];
+?>
+
+<ul>
+  <?php foreach ($fruits as $item): ?>
+    <li><?php echo $item; ?></li>
+  <?php endforeach; ?>
+</ul>
+```
+
+The HTML output generated:
+
+```html
+<ul>
+  <li>Apple</li>
+  <li>Mango</li>
+  <li>Orange</li>
+</ul>
+```
+
+### Include other files
+
+PHP can split a page into reusable components:
+
+```php
+<?php include "header.php"; ?>
+
+<main>
+  <h1>Page content</h1>
+</main>
+
+<?php include "footer.php"; ?>
+```
+
+---
+
+## Ready?
+
+You now understand the basics! Let's put this into practice by building a real project.
+
+---
+
+# Layouting
+
+For this project, you're expected to already understand the basics above.
+
+## Level 1: Text Procedure
+
+Here you need to understand HTML concepts: list elements, headings, images, and CSS: layout, padding, and border. This is the layout prototype — good luck!
+
+### Tips and requirements
+
+- You can use the `float` or `flex` property in CSS
+- Include images with `<img src="..."/>` — you can use a local file or a URL from the web
+- Use list elements in HTML, for example:
+
+```html
+<ul>
+  <li>List 1</li>
+  <li>List 2</li>
+</ul>
+```
+
+- List data can be stored in a PHP array and looped into HTML
+
+![Level 1 layout](../assets/frontend/3.png)
+
+## Level 2: Portfolio Section with a Form
+
+Here you need to combine HTML (form/button), CSS (layout), and PHP (processing input). This is the layout prototype — good luck!
+
+### Tips and requirements
+
+- Build a form with a name input, then display a welcome message after it's submitted
+- Match the layout exactly. You can use **flexbox** in CSS:
+
+```html
+<div style="display:flex">
+  <img src="..." />
+  <img src="..." />
+</div>
+```
+
+- Use `$_POST` to retrieve form data in PHP
+- Display data conditionally:
+
+```php
+<?php if (!empty($_POST["name"])): ?>
+  <p>Hello, <?php echo htmlspecialchars($_POST["name"]); ?>!</p>
+<?php endif; ?>
+```
+
+- Always use `htmlspecialchars()` when displaying user input — this prevents XSS attacks
+
+![Level 2 layout](../assets/frontend/4.png)
+
+<Card title="Submit" icon="upload" href="https://app.fysite.id/submit?course_id=1&subcourse_id=1" arrow="true" cta="Submit here">
+  Add your Github link or project in Google Drive then the community will review and help you together. Please stay tuned on Discord to see the latest updates!
+</Card>

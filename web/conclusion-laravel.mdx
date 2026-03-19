@@ -1,0 +1,881 @@
+---
+title: 'Conclusion'
+---
+
+## Overview
+
+This is the conclusion and the latest updates of **vibe coding** technologies — Laravel/PHP edition. Enjoy!
+
+The website pages that you have seen actually have **3 different aspects**:
+
+- **Skeleton (HTML):** Imagine blocks when you are writing on Notion
+- **Skin (CSS):** Styling
+- **Brain (PHP/JavaScript):** Logics
+
+---
+
+# HTML
+
+**Hyper Text Markup Language (HTML)** is a file to define your website blocks and metadata.
+This is a **required and main file** that has to exist in order to create a website.
+
+---
+
+## How to Start
+
+In Laravel, HTML is written inside **Blade** template files with the `.blade.php` extension, located in:
+
+```
+resources/views/
+```
+
+Recommended editors:
+
+- Visual Studio Code
+- Cursor
+- PhpStorm
+
+A basic Blade file looks like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    @yield('content')
+  </body>
+</html>
+```
+
+---
+
+## Tags
+
+Notice the pattern:
+
+```
+<...> ... </...>
+```
+
+This is called a **tag**.
+
+Some tags are **paired**, while others are **void** (self-closing).
+
+Examples:
+
+```
+<tag></tag>
+```
+
+or
+
+```
+<tag />
+```
+
+---
+
+## Head vs Body
+
+### Head Tag
+
+Inside `<head>` you usually place **metadata** such as:
+
+- Title
+- Description
+- OpenGraph tags
+- SEO information
+
+These help when sharing your website or appearing in search engines.
+
+---
+
+### Body Tag
+
+Inside `<body>` is where the **content of your website** goes.
+
+Examples:
+
+```html
+<h1>Hello World</h1>
+<p>This is a paragraph <span>!</span></p>
+<button>Click me</button>
+```
+
+Documentation reference:
+
+https://www.w3schools.com/tags/tag_comment.asp
+
+---
+
+## Attributes
+
+Tags can contain **attributes**.
+
+Example:
+
+```html
+<img src="./image.png" alt="Image" /> <a href="https://www.google.com">Google</a>
+```
+
+Attributes:
+
+- `src`
+- `href`
+- `alt`
+
+Each element may have **different supported attributes**.
+
+---
+
+# CSS
+
+**Cascading Style Sheets (CSS)** is used to style your HTML elements. CSS **cannot run alone**. It must be connected to an HTML file.
+
+---
+
+## Linking CSS
+
+In Laravel, assets are managed via **Vite**. Add this inside your `<head>` using the `@vite` directive:
+
+```html
+<head>
+  <title>Document</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+```
+
+Your CSS file lives at: `resources/css/app.css`
+
+---
+
+## Custom Fonts
+
+You can get fonts from: https://fonts.google.com. Search a font and copy the **link tag** into your Blade layout's `<head>`.
+
+---
+
+## Base Styling Template
+
+Common CSS reset at `resources/css/app.css`:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+}
+```
+
+Explanation:
+
+- Reset browser default spacing
+- Prevent elements exceeding dimensions
+
+---
+
+# CSS Selectors
+
+Selectors target HTML elements.
+
+Types:
+
+- Tag selector
+- Class selector
+- ID selector
+
+Example HTML:
+
+```html
+<h1 class="title" id="title">Hello World</h1>
+```
+
+Example CSS:
+
+```css
+h1 {
+  color: red;
+  font-size: 24px;
+}
+
+.title,
+#title,
+h1.title {
+  color: blue;
+}
+
+body p {
+  font-weight: bold;
+}
+```
+
+Notes:
+
+- `.` → class selector
+- `#` → id selector
+
+---
+
+# Magic Element: Div
+
+`div` is a container element used to group elements.
+
+Example:
+
+```html
+<div>
+  <h1>Title</h1>
+  <p>Description</p>
+</div>
+```
+
+Commonly used as:
+
+- wrapper
+- container
+- layout block
+
+---
+
+# Layout Styling Template
+
+### Flexbox
+
+Used for **horizontal or vertical layouts**
+
+```css
+display: flex;
+gap: 16px;
+flex-direction: row;
+```
+
+Options:
+
+- row
+- column
+
+---
+
+### Grid
+
+Used for **card-based layouts**.
+
+Example:
+
+```css
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+```
+
+Example use case:
+
+- Google Classroom style cards
+
+---
+
+# PHP
+
+PHP is the **primary programming language** of Laravel. PHP adds **logic and interactivity** on the server side.
+
+---
+
+## PHP in Blade
+
+In Laravel, PHP is written using **Blade directives** — a cleaner syntax compared to raw PHP.
+
+```blade
+{{-- Display a variable --}}
+<h1>{{ $title }}</h1>
+
+{{-- Conditional --}}
+@if ($user)
+  <p>Welcome, {{ $user->name }}!</p>
+@else
+  <p>Please login.</p>
+@endif
+
+{{-- Loop --}}
+@foreach ($posts as $post)
+  <p>{{ $post->title }}</p>
+@endforeach
+```
+
+---
+
+# Blade Templating
+
+Blade is Laravel's built-in **template engine**.
+
+---
+
+## Layout & Components
+
+Create the main layout at `resources/views/layouts/app.blade.php`:
+
+```blade
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>@yield('title', 'My App')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </head>
+  <body>
+    @yield('content')
+  </body>
+</html>
+```
+
+Use the layout in other pages:
+
+```blade
+@extends('layouts.app')
+
+@section('title', 'Home')
+
+@section('content')
+  <h1>Hello World</h1>
+@endsection
+```
+
+---
+
+## Blade Components
+
+Components make your UI reusable.
+
+Create a component: `resources/views/components/button.blade.php`
+
+```blade
+<button {{ $attributes->merge(['class' => 'btn']) }}>
+  {{ $slot }}
+</button>
+```
+
+Use it in other pages:
+
+```blade
+<x-button class="btn-primary">
+  Login
+</x-button>
+```
+
+---
+
+# Laravel
+
+Laravel is the **most popular fullstack PHP framework** today.
+
+Docs: https://laravel.com/docs
+
+Laravel includes:
+
+- Backend (PHP)
+- Frontend (Blade/Vite)
+- Routing
+- API
+- Built-in Authentication
+- ORM (Eloquent)
+
+---
+
+# Getting Started
+
+Install Laravel via Composer:
+
+```bash
+composer create-project laravel/laravel my-project
+cd my-project
+```
+
+Main folder structure:
+
+```
+app/
+  Http/
+    Controllers/
+  Models/
+resources/
+  views/
+routes/
+  web.php
+  api.php
+```
+
+Run the project:
+
+```bash
+php artisan serve
+```
+
+Run Vite (for CSS/JS):
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+# TailwindCSS
+
+TailwindCSS allows styling **without writing CSS files**.
+
+Docs: https://tailwindcss.com
+
+Install in Laravel:
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+Install the **TailwindCSS IntelliSense** extension for autocomplete.
+
+---
+
+## Basic Syntax
+
+### Colors
+
+```
+bg-red-200
+text-blue-900
+```
+
+Higher number → stronger color.
+
+---
+
+### Size
+
+```
+text-lg
+shadow-xl
+rounded-sm
+```
+
+---
+
+### Spacing
+
+```
+p-6
+m-24
+py-20
+mx-2
+pl-3
+```
+
+---
+
+### Layout
+
+```
+flex
+grid
+gap-4
+grid-cols-3
+flex-col
+mx-auto
+```
+
+---
+
+# Routing
+
+Routing in Laravel is defined in `routes/web.php` (for pages) and `routes/api.php` (for API).
+
+```php
+// Simple page
+Route::get('/', function () {
+  return view('welcome');
+});
+
+// Using a Controller
+Route::get('/user', [UserController::class, 'index']);
+Route::post('/user', [UserController::class, 'store']);
+```
+
+---
+
+## Dynamic Routes
+
+```php
+Route::get('/user/{id}', function (string $id) {
+  return "User ID: " . $id;
+});
+```
+
+In a Controller:
+
+```php
+public function show(string $id)
+{
+  $user = User::findOrFail($id);
+  return view('user.show', compact('user'));
+}
+```
+
+---
+
+## Route Groups & Middleware
+
+```php
+Route::middleware(['auth'])->group(function () {
+  Route::get('/dashboard', [DashboardController::class, 'index']);
+  Route::get('/profile', [ProfileController::class, 'show']);
+});
+```
+
+---
+
+# Controllers
+
+Controllers handle the application's business logic.
+
+Create a Controller:
+
+```bash
+php artisan make:controller UserController
+```
+
+Example Controller:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+          'name' => 'required|string|max:255',
+          'email' => 'required|email|unique:users',
+        ]);
+
+        User::create($request->all());
+        return redirect()->route('users.index');
+    }
+}
+```
+
+---
+
+# Rendering Methods
+
+## Server Side Rendering (SSR)
+
+In Laravel, all rendering is done on the **server side** by default using Blade.
+
+Benefits:
+
+- SEO-friendly
+- More secure for sensitive data
+- Ideal for pages that require authentication
+
+```php
+// Controller sends data to the view
+return view('dashboard', ['user' => auth()->user()]);
+```
+
+---
+
+## Client Side Rendering (CSR)
+
+For browser-side interactivity, use **Alpine.js** (lightweight) or **Livewire** (reactive without writing JavaScript).
+
+Alpine.js:
+
+```html
+<div x-data="{ open: false }">
+  <button @click="open = !open">Toggle</button>
+  <p x-show="open">Hello World!</p>
+</div>
+```
+
+---
+
+# Middleware
+
+Middleware is used to protect routes.
+
+Create a Middleware:
+
+```bash
+php artisan make:middleware CheckAdmin
+```
+
+Example Middleware:
+
+```php
+public function handle(Request $request, Closure $next)
+{
+    if (!auth()->user()?->is_admin) {
+        abort(403);
+    }
+
+    return $next($request);
+}
+```
+
+Register and use it in routes:
+
+```php
+Route::middleware(['auth', 'admin'])->group(function () {
+  Route::get('/admin', [AdminController::class, 'index']);
+});
+```
+
+---
+
+# API Routes
+
+Create API endpoints in `routes/api.php`:
+
+```php
+Route::get('/posts', [PostController::class, 'index']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/{id}', [PostController::class, 'show']);
+```
+
+Controller returns JSON:
+
+```php
+public function index()
+{
+    return response()->json(Post::all());
+}
+```
+
+Access via URL:
+
+```
+/api/posts
+```
+
+---
+
+# Infrastructure
+
+## Laravel Forge / Ploi
+
+https://forge.laravel.com
+
+A deployment platform built specifically for Laravel.
+
+Features:
+
+- Server provisioning
+- GitHub integration
+- Automatic deployments
+- Automatic SSL
+
+---
+
+## Railway / Render
+
+Cloud platforms that support PHP/Laravel.
+
+Great for:
+
+- Small to medium projects
+- Fast deployment from GitHub
+
+---
+
+## Supabase / PlanetScale
+
+Cloud databases that can be integrated with Laravel.
+
+https://supabase.com
+
+Supports:
+
+- PostgreSQL (Supabase)
+- MySQL (PlanetScale)
+- File storage
+
+---
+
+## OpenRouter
+
+AI API platform with free credits.
+
+https://openrouter.ai
+
+Can be integrated with Laravel via its built-in HTTP client:
+
+```php
+$response = Http::withHeaders([
+  'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+])->post('https://openrouter.ai/api/v1/chat/completions', [
+  'model' => 'openai/gpt-4o',
+  'messages' => [['role' => 'user', 'content' => 'Hello!']],
+]);
+```
+
+---
+
+# Libraries & Packages
+
+## Eloquent ORM
+
+Laravel's built-in ORM for communicating with the database.
+
+https://laravel.com/docs/eloquent
+
+Benefits:
+
+- Safer queries
+- Prevent SQL injection
+- Easy data manipulation
+
+Example:
+
+```php
+// Retrieve all records
+$posts = Post::all();
+
+// Filter
+$published = Post::where('status', 'published')->get();
+
+// Create a new record
+Post::create(['title' => 'Hello', 'body' => 'World']);
+```
+
+---
+
+## Laravel Breeze / Jetstream
+
+Laravel's official authentication starter packages.
+
+https://laravel.com/docs/starter-kits
+
+Supports:
+
+- Email/password
+- Google login (via Socialite)
+- OAuth
+
+Install Breeze:
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+```
+
+---
+
+## Laravel Sanctum / Passport
+
+For **API** authentication.
+
+https://laravel.com/docs/sanctum
+
+Sanctum (simple):
+
+```bash
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate
+```
+
+Use in API routes:
+
+```php
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+```
+
+---
+
+## Livewire
+
+A framework for building **reactive** UIs without writing a lot of JavaScript.
+
+https://livewire.laravel.com
+
+Install:
+
+```bash
+composer require livewire/livewire
+```
+
+Example Component:
+
+```php
+// app/Livewire/Counter.php
+class Counter extends Component
+{
+    public int $count = 0;
+
+    public function increment()
+    {
+        $this->count++;
+    }
+
+    public function render()
+    {
+        return view('livewire.counter');
+    }
+}
+```
+
+```blade
+{{-- resources/views/livewire/counter.blade.php --}}
+<div>
+  <h1>{{ $count }}</h1>
+  <button wire:click="increment">+</button>
+</div>
+```
+
+---
+
+# Bonus
+
+Complete Laravel starter kit with:
+
+- Breeze (Auth)
+- Livewire
+- TailwindCSS
+- Eloquent ORM
+
+Official reference:
+
+https://github.com/laravel/laravel
+
+---
+
+# Community
+
+Questions and contributions:
+
+https://laravel.io — Official Laravel community forum
+
+https://discord.gg/laravel — Laravel Discord
+
+Join the community to discuss and share your projects!
