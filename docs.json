@@ -19,10 +19,13 @@
           {
             "group": "Certified Web Dev",
             "pages": [
-              "web/frontend",
-              "web/backend",
+              "web/fundamental",
+              "web/express",
               "web/react",
-              "web/conclusion"
+              "web/php",
+              "web/laravel",
+              "web/conclusion-react",
+              "web/conclusion-laravel"
             ]
           }
         ]
